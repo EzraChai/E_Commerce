@@ -1,7 +1,7 @@
 //rsc
 import React from 'react';
 import {Link} from "react-router-dom"
-import {Container, Typography, Button, Grid} from "@material-ui/core";
+import {Container, Typography, Button, Grid,CssBaseline} from "@material-ui/core";
 import useStyles from "./styles";
 import CartItem from "./CartItem/CartItem";
 
@@ -46,6 +46,7 @@ const Cart = ({cart,handleUpdateCartQuantity,handleRemoveCartQuantity,handleEmpt
 
     return (
         <div>
+            <CssBaseline/>
             <Container>
                 <div className={classes.toolbar}/>
                 <Typography className={classes.title} variant={"h3"} gutterBottom>Your Shopping Cart</Typography>
