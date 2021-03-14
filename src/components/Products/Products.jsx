@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {Grid, Typography, CssBaseline, CircularProgress} from '@material-ui/core';
+import React from 'react';
+import {Grid, Typography, CssBaseline} from '@material-ui/core';
 
 import Product from "./Product/Product";
 
 import makeStyles from "./styles";
 import {Link} from "react-router-dom"
-import {commerce} from "../../lib/commerce";
-import Category from "./Category";
+
+
 /*
 const products = [
     {id:1,name:"Shoes",description:"Running Shoes",price:'RM 5',image:'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/9094123f-f624-4f32-9df8-9093bcc4c0ee/flyby-mid-basketball-shoe-Q2Gp58.jpg'},
