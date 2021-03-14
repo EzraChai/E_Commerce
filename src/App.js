@@ -4,16 +4,22 @@ import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 // import Navbar from "./components/NavBar/Navbar";
 
 import {commerce} from "./lib/commerce";
-import {Products,Navbar,Cart,Checkout} from "./components"
+import {Products,Navbar,Cart,Checkout,Category,Footer} from "./components"
 
 function App( ) {
     const [products,setProducts] = useState([]);
     const [cart,setCart] = useState({});
     const [order,setOrder] = useState({});
     const [errorMessage,setErrorMessage] = useState("")
+    const [categories,setCategories] = useState([])
 
     const fetchCart = async ()=>{
         setCart(await commerce.cart.retrieve());
+    }
+
+    const fetchCategories = async () =>{
+        const {data} = await commerce.categories.list();
+        setCategories(data)
     }
 
     const fetchProduct = async () =>{
@@ -57,8 +63,9 @@ function App( ) {
     }
 
     useEffect(()=>{
-        fetchProduct();
+        fetchCategories()
         fetchCart();
+        fetchProduct();
     },[])
 
     console.log(cart)
@@ -67,15 +74,16 @@ function App( ) {
     return (
         <div>
             <Router>
-                <Navbar totalItems={cart.total_items}/>
+                <Navbar totalItems={cart.total_items} categories={categories}/>
                 <Switch>
                     <Route exact path ="/">
-                        <Products products={products} onAddToCart={handleAddToCart}/>
+                        <Products products={products} categories={categories} onAddToCart={handleAddToCart}/>
                     </Route>
 
                     <Route exact path="/cart">
                         <Cart cart={cart} handleUpdateCartQuantity={handleUpdateCartQuantity} handleRemoveCartQuantity={handleRemoveCartQuantity} handleEmptyCart={handleEmptyCart} />
                     </Route>
+
 
                     <Route exact path="/checkout">
                         <Checkout cart={cart}
@@ -84,8 +92,15 @@ function App( ) {
                                   error={errorMessage}/>
                     </Route>
 
-                </Switch>
 
+                    {categories.map((category) => (
+                       <Route exact path={`/category/${category.slug}`}>
+                           <Category category={category} onAddToCart={handleAddToCart}/>
+                        </Route>
+                    ))}
+
+                </Switch>
+                <Footer/>
             </Router>
         </div>
     );
