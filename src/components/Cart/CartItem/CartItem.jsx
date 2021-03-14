@@ -1,9 +1,9 @@
 import React from 'react';
-import {Typography,Button ,Card,CardActions,CardContent,CardMedia} from "@material-ui/core";
+import {Typography, Button, Card, CardActions, CardContent, CardMedia} from "@material-ui/core";
 
 import useStyles from "./styles"
 
-const MyComponent = ({item,handleRemoveCartQuantity,handleUpdateCartQuantity}) => {
+const MyComponent = ({item, handleRemoveCartQuantity, handleUpdateCartQuantity}) => {
     const classes = useStyles()
 
     return (
@@ -15,11 +15,14 @@ const MyComponent = ({item,handleRemoveCartQuantity,handleUpdateCartQuantity}) =
             </CardContent>
             <CardActions className={classes.cardActions}>
                 <div className={classes.buttons}>
-                    <Button type={"button"} onClick={()=>handleUpdateCartQuantity(item.id,item.quantity-1)} size={"small"} >-</Button>
+                    <Button type={"button"} onClick={() => handleUpdateCartQuantity(item.id, item.quantity - 1)}
+                            size={"small"}>-</Button>
                     <Typography>{item.quantity}</Typography>
-                    <Button type={"button"} onClick={()=>handleUpdateCartQuantity(item.id,item.quantity+1)} size={"small"} >+</Button>
+                    <Button type={"button"} onClick={() => handleUpdateCartQuantity(item.id, item.quantity + 1)}
+                            size={"small"}>+</Button>
                 </div>
-                <Button variant={"contained"} type={"button"} className={classes.remove} onClick={()=>handleRemoveCartQuantity(item.id)} color={"secondary"}>Remove</Button>
+                <Button variant={"contained"} type={"button"} className={classes.remove}
+                        onClick={() => handleRemoveCartQuantity(item.id)} color={"secondary"}>Remove</Button>
             </CardActions>
         </Card>
     );

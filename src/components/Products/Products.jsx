@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Grid, Typography,CssBaseline} from '@material-ui/core';
+import {Grid, Typography, CssBaseline, CircularProgress} from '@material-ui/core';
 
 import Product from "./Product/Product";
 
@@ -17,6 +17,7 @@ const Products = ({products, onAddToCart, categories}) => {
 
     const classes = makeStyles();
     return (
+
         <main className={classes.content}>
             <CssBaseline/>
             <Grid
@@ -25,37 +26,33 @@ const Products = ({products, onAddToCart, categories}) => {
                 justify="center"
                 alignItems="baseline"
             >
-                <Grid item xs={12} sm={12} md={2} style={{textAlign:"center"}}>
+                <Grid item xs={12} sm={12} md={2} style={{textAlign: "center"}}>
                     <Typography style={{marginTop: "5%"}} variant={"h5"}>Categories</Typography>
                     {categories.map((category) => (
-                            <div key={category.id}>
-                                <ul>
-                                    <li>
-                                        <Link to={`/category/${category.slug}`}>
-                                            <a>{category.name}</a>
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        ))}
+                        <div key={category.id}>
+                            <ul>
+                                <li>
+                                    <Link to={`/category/${category.slug}`}>
+                                        <a>{category.name}</a>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    ))}
                 </Grid>
-                <Grid justify={"center"} xs={12} sm={12} md={10} >
+                <Grid justify={"center"} xs={12} sm={12} md={10}>
                     <div className={classes.toolbar}/>
-                        <Grid container justify="center" spacing={4}>
-                            {products.map((product) => (
-                                <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-                                    <Product duct product={product} onAddToCart={onAddToCart} categories/>
-                                </Grid>
-                            ))}
-                        </Grid>
+                    <Grid container justify="center" spacing={4}>
+                        {products.map((product) => (
+                            <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+                                <Product duct product={product} onAddToCart={onAddToCart} categories/>
+                            </Grid>
+                        ))}
+                    </Grid>
                 </Grid>
-
-
             </Grid>
-
         </main>
     )
-
 }
 
 export default Products;

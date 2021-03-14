@@ -4,7 +4,7 @@ import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 // import Navbar from "./components/NavBar/Navbar";
 
 import {commerce} from "./lib/commerce";
-import {Products,Navbar,Cart,Checkout,Category,Footer} from "./components"
+import {Products,Navbar,Cart,Checkout,Category,Footer,ProductInfo} from "./components"
 
 function App( ) {
     const [products,setProducts] = useState([]);
@@ -96,6 +96,12 @@ function App( ) {
                     {categories.map((category) => (
                        <Route exact path={`/category/${category.slug}`}>
                            <Category category={category} onAddToCart={handleAddToCart}/>
+                        </Route>
+                    ))}
+
+                    {products.map((product) =>(
+                        <Route exact path={`/product/${product.permalink}`}>
+                            <ProductInfo product={product} onAddToCart={handleAddToCart} />
                         </Route>
                     ))}
 
