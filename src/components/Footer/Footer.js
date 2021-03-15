@@ -9,8 +9,8 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary">
             {'Copyright © '}
-            <Link color="inherit" href="https://www.ezrablog.ml/">
-                Ezra Commerce Store
+            <Link color="inherit" href="https://www.facebook.com/NagaworldINT">
+                TY Studio.
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}

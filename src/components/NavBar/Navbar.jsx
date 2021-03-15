@@ -15,9 +15,9 @@ function Navbar({totalItems}) {
             <AppBar position={"fixed"} className={classes.appBar} color={"inherit"}>
                 <Toolbar>
                     <Typography component={Link} to={"/"} variant={"h6"} className={classes.title} color={"inherit"}>
-                        <img src={"https://i.pinimg.com/originals/66/f7/72/66f77296282b5ab7c2780724802614c0.png"}
+                        <img src={"https://i.ibb.co/2WLm1My/53078607-2630694290291910-8889152933308923904-o.png"}
                              alt={"Brand Logo"} height="25px" className={classes.image}/>
-                        Ezra Commerce Store
+                        TY Studio.
                     </Typography>
                     <div className={classes.grow}/>
                     {location.pathname !== "/cart" && location.pathname !== "/checkout" && location.pathname !== "/" ? (
