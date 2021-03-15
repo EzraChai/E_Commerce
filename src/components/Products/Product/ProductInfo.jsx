@@ -10,8 +10,10 @@ import {
     Box,
     FormControl, Select, MenuItem, InputLabel
 } from "@material-ui/core";
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import useStyles from "./styles";
 import {AddShoppingCart} from "@material-ui/icons";
+import {Link} from "react-router-dom"
 
 const ProductInfo = ({product, onAddToCart}) => {
     const classes = useStyles();
@@ -21,13 +23,22 @@ const ProductInfo = ({product, onAddToCart}) => {
         setQuantity(event.target.value);
     };
 
+    // const history = () =>{
+    //     window.history.back();
+    // }
+
     console.log("Info", product)
     return (
         <>
+            <Button style={{margin:"0 2%",position:"fixed",padding:"15px 10px",borderRadius:"15%"}} onClick={()=>window.history.back()}>
+                    <KeyboardBackspaceIcon />
+            </Button>
+
             <Container style={{marginTop: "10vh"}}>
                 <div className="classes.toolbar"/>
                 <Paper className={"classes.paper"} elevation={3}>
                     <Box p={2}>
+
                         <Grid container spacing={5}>
                             <Grid item xs={12} sm={12} md={6}>
                                 <img width={"100%"} style={{borderRadius: "2px"}} src={product.media.source}
@@ -36,7 +47,12 @@ const ProductInfo = ({product, onAddToCart}) => {
                             <Grid container justify={"center"} item xs={12} sm={12} md={6}>
                                 <Grid item>
                                     <Typography className={classes.title} style={{paddingTop: "5px"}} variant={"h4"}
-                                                gutterBottom>{product.name}</Typography>
+                                                gutterBottom>{product.name}
+                                    </Typography>
+                                    <Typography variant={"h5"} style={{float:"right"}}>{product.price.formatted_with_symbol}</Typography>
+                                    <br/>
+                                    <br/>
+                                    <br/>
                                     <Typography dangerouslySetInnerHTML={{__html: product.description}}
                                                 variant={"body1"}/>
                                     <Grid container
@@ -82,6 +98,7 @@ const ProductInfo = ({product, onAddToCart}) => {
                     </Box>
                 </Paper>
             </Container>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
         </>
     );

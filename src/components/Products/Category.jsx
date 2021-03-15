@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { Divider, Grid, Typography,CircularProgress } from "@material-ui/core";
+import {Divider, Grid, Typography, CircularProgress, Button} from "@material-ui/core";
 import {commerce} from "../../lib/commerce";
 import Product from "./Product/Product";
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import makeStyles from "./styles";
 
 
@@ -26,7 +27,10 @@ const Category = ({category, onAddToCart}) => {
     console.log("Products", products)
     console.log("Category", category)
     return (
-        <div>
+        <>
+            <Button style={{margin:"5% 2.2%",position:"fixed",padding:"15px 10px",borderRadius:"15%"}} onClick={()=>window.history.back()}>
+                <KeyboardBackspaceIcon />
+            </Button>
             <main className={classes.content}>
                 <Typography style={{textAlign: "center", marginTop: "80px"}} variant={"h3"}>{category.name}</Typography>
                 <Divider/>
@@ -50,7 +54,11 @@ const Category = ({category, onAddToCart}) => {
 
                 </Grid>
             </main>
-        </div>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </>
     );
 };
 

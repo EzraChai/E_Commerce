@@ -4,6 +4,8 @@ import {Link} from "react-router-dom"
 import {Container, Typography, Button, Grid, CssBaseline, CircularProgress} from "@material-ui/core";
 import useStyles from "./styles";
 import CartItem from "./CartItem/CartItem";
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+
 
 const Cart = ({cart, handleUpdateCartQuantity, handleRemoveCartQuantity, handleEmptyCart}) => {
     const classes = useStyles();
@@ -53,13 +55,19 @@ const Cart = ({cart, handleUpdateCartQuantity, handleRemoveCartQuantity, handleE
     return (
         <div>
             <CssBaseline/>
+            <Button style={{margin:"5.1% 2.5%",position: "fixed", padding: "15px 10px", borderRadius: "15%"}}
+                                  onClick={() => window.history.back()}>
+            <KeyboardBackspaceIcon/>
+        </Button>
             <Container>
                 <div className={classes.toolbar}/>
                 <Typography className={classes.title} variant={"h3"} gutterBottom>Your Shopping Cart</Typography>
                 {!cart.line_items.length ? <EmptyCart/> : <FilledCart/>}
             </Container>
+            <br/><br/><br/><br/><br/><br/><br/>
         </div>
+
     );
-};
+}
 
 export default Cart;
