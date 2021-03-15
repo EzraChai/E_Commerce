@@ -18,6 +18,10 @@ const Category = ({category, onAddToCart}) => {
         setProducts(data);
     }
 
+    const handleBack = () =>{
+        window.history.back()
+    }
+
     useEffect(() => {
         fetchProduct();
     }, [])
@@ -28,7 +32,7 @@ const Category = ({category, onAddToCart}) => {
     console.log("Category", category)
     return (
         <>
-            <Button style={{margin:"5% 2.2%",position:"fixed",padding:"15px 10px",borderRadius:"15%"}} onClick={()=>window.history.back()}>
+            <Button style={{margin:"5% 2.2%",position:"fixed",padding:"15px 10px",borderRadius:"15%"}} onClick={()=>handleBack()}>
                 <KeyboardBackspaceIcon />
             </Button>
             <main className={classes.content}>
