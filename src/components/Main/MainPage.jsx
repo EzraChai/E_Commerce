@@ -7,6 +7,7 @@ import MainContent from "./Content"
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        scrollBehavior: "smooth",
         minHeight: "100vh",
         backgroundImage: "url('https://i.ibb.co/34kySSK/andrej-lisakov-Yy4s-N6-Qzbo-U-unsplash.webp')",
         backgroundRepeat: 'no-repeat',
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "flex-end",
     },
     heading: {
+        padding:"20px",
         color: "black",
         fontFamily: "'Nunito', sans-serif",
         textAlign: "center",
@@ -48,8 +50,11 @@ const MyComponent = () => {
     const classes = useStyles();
 
     const handleClick = () =>{
-        alert("Working")
+        document.querySelector('.mainPoint').scrollIntoView({
+            behavior: 'smooth'
+        });
     }
+
 
     return (
         <div className={classes.root}>
@@ -64,7 +69,7 @@ const MyComponent = () => {
                     </IconButton>
                 </div>
             </Collapse>
-            <MainContent/>
+                <MainContent/>
         </div>
     );
 };

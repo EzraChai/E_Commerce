@@ -41,7 +41,7 @@ const MainContent = () => {
     return (
         <>
             <div className={classes.root}>
-                <Paper variant={"elevation"}>
+                <Paper className={"mainPoint"} variant={"elevation"}>
                     <div className={classes.space}/>
                     <div className={classes.space}/>
                     <div className={classes.space}/>
@@ -67,8 +67,8 @@ const MainContent = () => {
                         <div className={classes.space}/>
                         <Grid container spacing={6} direction={"row"} justify={"center"}>
                             <Grid item xs={9} md={3} lg={3}>
-                                <Card >
-                                    <CardActionArea>
+                                <Card>
+                                    <CardActionArea >
                                         <CardMedia
                                             className={classes.media}
                                             image="https://i.ibb.co/ZTypZ08/sahil-pandita-bs-Dlc-Gg9-Nh4-unsplash.jpg"
@@ -81,7 +81,6 @@ const MainContent = () => {
                             </Grid>
                             <Grid item xs={9} md={3} lg={3}>
                                 <div className={classes.space}/>
-
                                 <Card >
                                     <CardActionArea>
                                         <CardMedia
@@ -93,6 +92,7 @@ const MainContent = () => {
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
+                                <div className={classes.space}/>
                             </Grid>
                             <Grid item xs={9} md={3} lg={3}>
                                 <Card >
@@ -100,7 +100,7 @@ const MainContent = () => {
                                         <CardMedia
                                             className={classes.media}
                                             image="https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                            title={"Festivals"}/>
+                                            title={"Customs"}/>
                                         <CardContent>
                                             <Typography variant={"h6"}>Customs</Typography>
                                         </CardContent>
