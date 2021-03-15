@@ -10,8 +10,9 @@ function Copyright() {
         <Typography variant="body2" color="textSecondary">
             {'Copyright © '}
             <Link color="inherit" href="https://www.facebook.com/NagaworldINT">
-                TY Studio.
-            </Link>{' '}
+                TY Studio · Concept Tee
+            </Link>
+            {' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>

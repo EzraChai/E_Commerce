@@ -10,6 +10,8 @@ export default makeStyles((theme) => ({
     },
     title: {
         fontSize:40,
+        fontWeight:'400',
+        fontFamily: "'Noto Sans SC', sans-serif",
     },
     toolbar: theme.mixins.toolbar,
     cardActions: {

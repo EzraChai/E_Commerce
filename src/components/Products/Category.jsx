@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Divider, Grid, Typography, CircularProgress, Button} from "@material-ui/core";
+import {Divider, Grid, Typography, CircularProgress, Fab} from "@material-ui/core";
 import {commerce} from "../../lib/commerce";
 import Product from "./Product/Product";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
@@ -32,11 +32,11 @@ const Category = ({category, onAddToCart}) => {
     console.log("Category", category)
     return (
         <>
-            <Button style={{margin:"5% 2.2%",position:"fixed",padding:"15px 10px",borderRadius:"15%"}} onClick={()=>handleBack()}>
+            <Fab size={"medium"} style={{margin:"5% 2.2%",position:"fixed",padding:"15px 10px",borderRadius:"15%"}} onClick={()=>handleBack()}>
                 <KeyboardBackspaceIcon />
-            </Button>
+            </Fab>
             <main className={classes.content}>
-                <Typography style={{textAlign: "center", marginTop: "80px"}} variant={"h3"}>{category.name}</Typography>
+                <Typography style={{textAlign: "center",padding:"20px 0", fontWeight:400,fontFamily:"'Noto Sans SC', sans-serif", marginTop: "80px"}} variant={"h3"}>{category.name}</Typography>
                 <Divider/>
 
                 <div className={classes.toolbar}/>

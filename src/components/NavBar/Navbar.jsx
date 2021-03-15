@@ -17,7 +17,7 @@ function Navbar({totalItems}) {
                     <Typography component={Link} to={"/"} variant={"h6"} className={classes.title} color={"inherit"}>
                         <img src={"https://i.ibb.co/2WLm1My/53078607-2630694290291910-8889152933308923904-o.png"}
                              alt={"Brand Logo"} height="25px" className={classes.image}/>
-                        TY Studio.
+                        TY Studio · Concept Tee
                     </Typography>
                     <div className={classes.grow}/>
                     {location.pathname !== "/cart" && location.pathname !== "/checkout" && location.pathname !== "/" ? (

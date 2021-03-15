@@ -4,16 +4,14 @@ import {
     Paper,
     Container,
     Grid,
-    IconButton,
     Button,
     Spacing,
     Box,
-    FormControl, Select, MenuItem, InputLabel
+    FormControl, Select, MenuItem, InputLabel, Fab
 } from "@material-ui/core";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import useStyles from "./styles";
 import {AddShoppingCart} from "@material-ui/icons";
-import {Link} from "react-router-dom"
 
 const ProductInfo = ({product, onAddToCart}) => {
     const classes = useStyles();
@@ -23,16 +21,12 @@ const ProductInfo = ({product, onAddToCart}) => {
         setQuantity(event.target.value);
     };
 
-    // const history = () =>{
-    //     window.history.back();
-    // }
-
     console.log("Info", product)
     return (
         <>
-            <Button style={{margin:"0 2%",position:"fixed",padding:"15px 10px",borderRadius:"15%"}} onClick={()=>window.history.back()}>
+            <Fab size="medium" style={{margin:"0 2%",position:"fixed",padding:"15px 10px",borderRadius:"15%"}} onClick={()=>window.history.back()}>
                     <KeyboardBackspaceIcon />
-            </Button>
+            </Fab>
 
             <Container style={{marginTop: "10vh"}}>
                 <div className="classes.toolbar"/>
@@ -55,6 +49,7 @@ const ProductInfo = ({product, onAddToCart}) => {
                                     <br/>
                                     <Typography dangerouslySetInnerHTML={{__html: product.description}}
                                                 variant={"body1"}/>
+                                                <br/>
                                     <Grid container
                                           direction="row"
                                           justify="flex-end"
@@ -82,12 +77,10 @@ const ProductInfo = ({product, onAddToCart}) => {
                                             </FormControl>
                                         </Grid>
                                         <Grid item>
-                                            <Button variant={"contained"}
+                                            <Button style={{padding:"15px 15px"}} variant={"contained"}
                                                     onClick={() => onAddToCart(product.id, quantity)}>
-                                                <IconButton aria-label="Add to Cart">
                                                     <AddShoppingCart/>
-                                                </IconButton>
-                                                <Typography variant={"body1"}>Add To Cart</Typography>
+                                                <Typography style={{paddingLeft:"5px"}} variant={"body1"}>Add To Cart</Typography>
                                                 <div style={{marginRight: '15px'}}/>
                                             </Button>
                                         </Grid>
