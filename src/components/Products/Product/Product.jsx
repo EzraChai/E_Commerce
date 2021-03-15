@@ -18,7 +18,7 @@ const Product = ({product, onAddToCart}) => {
                             <Typography variant="h5" gutterBottom>
                                 {product.name}
                             </Typography>
-                            <Typography style={{padding:"0 8px"}} variant="h6" gutterBottom>
+                            <Typography className={classes.price} style={{padding:"0 8px"}} variant="h6" gutterBottom>
                                 {product.price.formatted_with_symbol}
                             </Typography>
                         </div>
@@ -32,10 +32,7 @@ const Product = ({product, onAddToCart}) => {
                     </IconButton>
                 </CardActions>
             </Card>
-            <br/><br/><br/><br/><br/><br/>
-            <br/><br/><br/><br/><br/><br/>
-            <br/><br/><br/><br/><br/><br/>
-
+                <br/>
         </div>
     );
 }

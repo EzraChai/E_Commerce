@@ -36,7 +36,7 @@ const Category = ({category, onAddToCart}) => {
                 <KeyboardBackspaceIcon />
             </Fab>
             <main className={classes.content}>
-                <Typography style={{textAlign: "center",padding:"20px 0", fontWeight:400,fontFamily:"'Noto Sans SC', sans-serif", marginTop: "80px"}} variant={"h3"}>{category.name}</Typography>
+                <Typography className={classes.title} variant={"h3"}>{category.name}</Typography>
                 <Divider/>
 
                 <div className={classes.toolbar}/>

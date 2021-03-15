@@ -8,6 +8,9 @@ import {Link} from "react-router-dom"
 const useStyles = makeStyles((theme) => ({
     root:{
         paddingTop:"900px",
+        ["@media (max-width:800px)"]:{
+            paddingTop:"250px",
+        }
     },
     container:{
         height:"100vh",

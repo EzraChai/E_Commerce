@@ -77,7 +77,7 @@ const ProductInfo = ({product, onAddToCart}) => {
                                             </FormControl>
                                         </Grid>
                                         <Grid item>
-                                            <Button style={{padding:"15px 15px"}} variant={"contained"}
+                                            <Button style={{padding:"15px 10px",paddingRight:"0px"}} variant={"contained"}
                                                     onClick={() => onAddToCart(product.id, quantity)}>
                                                     <AddShoppingCart/>
                                                 <Typography style={{paddingLeft:"5px"}} variant={"body1"}>Add To Cart</Typography>

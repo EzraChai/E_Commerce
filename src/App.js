@@ -107,7 +107,7 @@ function App() {
                         <MainPage/>
                     </Route>
                     <Route exact path="/products">
-                        <Products products={products} categories={categories} onAddToCart={handleAddToCart}/>
+                        <Products products={products} onAddToCart={handleAddToCart}/>
                     </Route>
 
                     <Route exact path="/cart">

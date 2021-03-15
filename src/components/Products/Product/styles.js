@@ -9,8 +9,11 @@ export default makeStyles((theme) => ({
         paddingTop: '56.25%'
     },
     title: {
-        fontSize:40,
-        fontWeight:'400',
+        fontSize: 34,
+        ["@media (max-width:800px)"]: {
+            fontSize: 30,
+        },
+        fontWeight: '400',
         fontFamily: "'Noto Sans SC', sans-serif",
     },
     toolbar: theme.mixins.toolbar,
@@ -20,7 +23,10 @@ export default makeStyles((theme) => ({
     },
     cardContent: {
         display: "flex",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        ["@media (max-width:800px)"]: {
+            display:"block",
+        }
     },
     paper: {
         marginTop: theme.spacing(3),
