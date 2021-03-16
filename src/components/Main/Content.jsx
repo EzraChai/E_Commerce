@@ -92,7 +92,7 @@ const MainContent = ({latestProduct}) => {
                                     <CardActionArea >
                                         <CardMedia
                                             className={classes.media}
-                                            image="https://i.ibb.co/ZTypZ08/sahil-pandita-bs-Dlc-Gg9-Nh4-unsplash.jpg"
+                                            image="https://i.ibb.co/7zDnGBH/sahil-pandita-bs-Dlc-Gg9-Nh4-unsplash-min.webp"
                                             title={"Festivals"}/>
                                         <CardContent>
                                             <Typography className={classes.CardText} variant={"h6"}>Festivals</Typography>

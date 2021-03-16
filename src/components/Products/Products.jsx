@@ -20,6 +20,7 @@ const Products = ({products, onAddToCart}) => {
 
     useEffect(()=>{
         setDone(true)
+        window.scrollTo(0,0)
     },[products])
     return (
 

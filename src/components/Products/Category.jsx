@@ -24,6 +24,7 @@ const Category = ({category, onAddToCart}) => {
 
     useEffect(() => {
         fetchProduct();
+        window.scrollTo(0,0)
     }, [])
 
     const classes = makeStyles();

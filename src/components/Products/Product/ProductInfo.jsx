@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Typography,
     Paper,
@@ -12,9 +12,8 @@ import {
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import useStyles from "./styles";
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
-import {AddShoppingCart} from "@material-ui/icons";
 
-const ProductInfo = ({product, onAddToCart}) => {
+const ProductInfo = ({product}) => {
     const classes = useStyles();
     /*const [quantity, setQuantity] = React.useState(1);
 
@@ -22,11 +21,14 @@ const ProductInfo = ({product, onAddToCart}) => {
         setQuantity(event.target.value);
     };*/
 
+    useState(()=>{
+        window.scrollTo(0, 0);
+    },[])
+
     const shopeeClicked = () => {
         window.open(`https://shopee.com.my/${product.sku}`,"_blank");
     }
 
-    console.log("Info", product)
     return (
         <>
             <Fab size="medium" style={{margin: "0 2%", position: "fixed", padding: "15px 10px", borderRadius: "15%"}}
