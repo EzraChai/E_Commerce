@@ -20,8 +20,8 @@ export default makeStyles((theme) => ({
     title:{
         textAlign: "center",
         padding:"20px 0",
-        fontWeight:400,
-        fontFamily:"'Noto Sans SC', sans-serif",
+        fontWeight:300,
+        fontFamily: "'Nunito', sans-serif",
         marginTop: "80px",
         ["@media (max-width:800px)"]:{
             fontSize:"30px",

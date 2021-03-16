@@ -7,33 +7,39 @@ import {
     Button,
     Spacing,
     Box,
-    FormControl, Select, MenuItem, InputLabel, Fab
+    Fab,
 } from "@material-ui/core";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import useStyles from "./styles";
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import {AddShoppingCart} from "@material-ui/icons";
 
 const ProductInfo = ({product, onAddToCart}) => {
     const classes = useStyles();
-    const [quantity, setQuantity] = React.useState(1);
+    /*const [quantity, setQuantity] = React.useState(1);
 
     const handleChange = (event) => {
         setQuantity(event.target.value);
-    };
+    };*/
+
+    const shopeeClicked = () => {
+        window.open(`https://shopee.com.my/${product.sku}`,"_blank");
+    }
 
     console.log("Info", product)
     return (
         <>
-            <Fab size="medium" style={{margin:"0 2%",position:"fixed",padding:"15px 10px",borderRadius:"15%"}} onClick={()=>window.history.back()}>
-                    <KeyboardBackspaceIcon />
+            <Fab size="medium" style={{margin: "0 2%", position: "fixed", padding: "15px 10px", borderRadius: "15%"}}
+                 onClick={() => window.history.back()}>
+                <KeyboardBackspaceIcon/>
             </Fab>
 
             <Container style={{marginTop: "10vh"}}>
                 <div className="classes.toolbar"/>
                 <Paper className={"classes.paper"} elevation={3}>
-                    <Box p={2}>
+                    <Box p={3}>
 
-                        <Grid container spacing={5}>
+                        <Grid container spacing={4}>
                             <Grid item xs={12} sm={12} md={6}>
                                 <img width={"100%"} style={{borderRadius: "2px"}} src={product.media.source}
                                      alt={product.name}/>
@@ -43,19 +49,36 @@ const ProductInfo = ({product, onAddToCart}) => {
                                     <Typography className={classes.title} style={{paddingTop: "5px"}} variant={"h4"}
                                                 gutterBottom>{product.name}
                                     </Typography>
-                                    <Typography variant={"h5"} style={{float:"right"}}>{product.price.formatted_with_symbol}</Typography>
+                                    <Typography variant={"h5"}
+                                                style={{float: "right"}}>{product.price.formatted_with_symbol}</Typography>
                                     <br/>
                                     <br/>
                                     <br/>
                                     <Typography dangerouslySetInnerHTML={{__html: product.description}}
                                                 variant={"body1"}/>
-                                                <br/>
+                                    <br/>
                                     <Grid container
                                           direction="row"
                                           justify="flex-end"
                                           alignItems="flex-end"
                                           style={{margin: "30px 2px"}}>
-                                        <Grid item style={{paddingRight: "25px"}}>
+                                        <Grid item style={{paddingRight:"10px"}}>
+                                            <Button variant={"outlined"} style={{paddingRight:"17px"}} onClick={() => {
+                                                shopeeClicked()
+                                            }}>
+                                                <Grid container alignItems={"center"}>
+                                                    <Grid item>
+                                                        <Typography style={{padding: "8px", marginBottom: "5px"}}>Buy
+                                                            now at <span
+                                                                style={{color: "#f53e2d"}}>Shopee</span></Typography>
+                                                    </Grid>
+                                                    <Grid item>
+                                                        <ArrowRightAltIcon/>
+                                                    </Grid>
+                                                </Grid>
+                                            </Button>
+                                        </Grid>
+                                        {/*<Grid item style={{paddingRight: "25px"}}>
                                             <FormControl style={{minWidth: 100}} variant="filled"
                                                          className={classes.formControl}>
                                                 <InputLabel id="demo-simple-select-outlined-label">Quantity</InputLabel>
@@ -83,7 +106,7 @@ const ProductInfo = ({product, onAddToCart}) => {
                                                 <Typography style={{paddingLeft:"5px"}} variant={"body1"}>Add To Cart</Typography>
                                                 <div style={{marginRight: '15px'}}/>
                                             </Button>
-                                        </Grid>
+                                        </Grid>*/}
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -91,7 +114,7 @@ const ProductInfo = ({product, onAddToCart}) => {
                     </Box>
                 </Paper>
             </Container>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
         </>
     );

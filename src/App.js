@@ -15,6 +15,7 @@ function App() {
     const [errorMessage, setErrorMessage] = useState("")
     const [categories, setCategories] = useState([])
     const [open, setOpen] = useState(false);
+    const [latestProduct,setLatestProduct] = useState([])
 
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -54,7 +55,6 @@ function App() {
             <>
 
             </>
-
         )
     }
 
@@ -89,8 +89,15 @@ function App() {
         }
     }
 
+    const fetchNewestProduct = async () =>{
+        const {data} = await commerce.products.list({limit:4});
+        setLatestProduct(data);
+        console.log("data",data)
+    }
+
     useEffect(() => {
-        fetchCategories()
+        fetchNewestProduct();
+        fetchCategories();
         fetchCart();
         fetchProduct();
     }, [])
@@ -104,7 +111,7 @@ function App() {
                 <Navbar totalItems={cart.total_items} categories={categories}/>
                 <Switch>
                     <Route exact path="/">
-                        <MainPage/>
+                        <MainPage latestProduct={latestProduct}/>
                     </Route>
                     <Route exact path="/products">
                         <Products products={products} onAddToCart={handleAddToCart}/>

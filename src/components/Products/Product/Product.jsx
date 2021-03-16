@@ -1,11 +1,11 @@
 import React from 'react';
 import {Card, CardMedia, CardContent, CardActions, Typography, IconButton, CardActionArea} from "@material-ui/core";
-import {AddShoppingCart} from "@material-ui/icons";
 import {Link} from "react-router-dom"
+import StoreIcon from '@material-ui/icons/Store';
 
 import useStyles from './styles';
 
-const Product = ({product, onAddToCart}) => {
+const Product = ({product}) => {
     const classes = useStyles();
     console.log("product", product.permalink);
     return (
@@ -27,8 +27,11 @@ const Product = ({product, onAddToCart}) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions disableSpacing className={classes.cardActions}>
-                    <IconButton aria-label="Add to Cart" onClick={() => onAddToCart(product.id, 1)}>
+                    {/*<IconButton aria-label="Add to Cart" onClick={() => onAddToCart(product.id, 1)}>
                         <AddShoppingCart/>
+                    </IconButton>*/}
+                    <IconButton onClick={()=>{window.open(`https://shopee.com.my/${product.sku}`,"_blank");}}>
+                        <StoreIcon/>
                     </IconButton>
                 </CardActions>
             </Card>

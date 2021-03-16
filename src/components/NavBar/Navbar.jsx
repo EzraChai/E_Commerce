@@ -1,6 +1,7 @@
 import React from 'react';
 import {AppBar, Toolbar, IconButton, Badge, Menu, MenuItem, Typography} from "@material-ui/core";
 import {Link, useLocation} from "react-router-dom"
+import FacebookIcon from '@material-ui/icons/Facebook';
 
 import {ShoppingCart} from "@material-ui/icons"
 
@@ -22,11 +23,15 @@ function Navbar({totalItems}) {
                     <div className={classes.grow}/>
                     {location.pathname !== "/cart" && location.pathname !== "/checkout" && location.pathname !== "/" ? (
                         <div className={classes.button}>
-                            <IconButton component={Link} to={"/cart"} aria-label="Show cart items" color={"inherit"}>
+                            {/*<IconButton component={Link} to={"/cart"} aria-label="Show cart items" color={"inherit"}>
                                 <Badge badgeContent={totalItems} color={"secondary"}>
                                     <ShoppingCart/>
                                 </Badge>
+                            </IconButton>*/}
+                            <IconButton onClick={()=>window.open('https://www.facebook.com/NagaworldINT', '_blank')}>
+                                <FacebookIcon/>
                             </IconButton>
+
                         </div>) : (null)}
 
 

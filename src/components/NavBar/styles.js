@@ -15,7 +15,12 @@ export default makeStyles((theme) => ({
         flexGrow: 1,
         alignItems: 'center',
         display: 'flex',
+        fontWeight:"600",
         textDecoration: 'none',
+        fontFamily: "'Nunito', sans-serif",
+        ["@media (max-width:800px)"]: {
+            fontWeight:"400",
+        }
     },
     image: {
         marginRight: '10px',
