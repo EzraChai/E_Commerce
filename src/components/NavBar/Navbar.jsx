@@ -107,7 +107,7 @@ function Navbar({handleChange, state}) {
                             </IconButton>*/}
                             <Grid container alignItems="flex-end" direction="row">
                                 <Grid item>
-                                    <FormControlLabel style={{marginBottom: "1px"}}
+                                    <FormControlLabel style={{marginBottom: "1px",marginLeft:"15px"}}
                                                       control={<IOSSwitch checked={state.checkedB}
                                                                           onChange={handleChange} name="checkedB"/>}
                                                       labelPlacement="end"

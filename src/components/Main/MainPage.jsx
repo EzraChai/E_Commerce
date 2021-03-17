@@ -16,7 +16,7 @@ const MyComponent = ({latestProduct, categories, darkMode}) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: darkMode ? "contain" : "100% 70%",
             transition: "0.6s",
-            ["@media (max-width:1025px)"]:{
+            ["@media (max-width:1360px)"]:{
                 backgroundSize: darkMode ? "contain" : "100% 35%",
             },
             ["@media (max-width:450px)"]: {
