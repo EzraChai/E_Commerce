@@ -3,7 +3,7 @@ import {
     Card,
     CardActionArea,
     CardContent,
-    CardMedia,
+    CardMedia, CssBaseline,
     Grid,
     makeStyles,
     Paper,
@@ -43,15 +43,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const LatestProduct = ({product}) => {
+const LatestProduct = ({product,darkMode}) => {
     const classes = useStyles();
     return (
         <>
             <Card className={classes.root}>
                 <CardActionArea component={Link} to={`/product/${product.permalink}`}>
                     <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
-                    <CardContent>
-                        <div className={classes.cardContent}>
+                    <CardContent style={{backgroundColor:darkMode?"#3b3b3b":"white"}}>
+                        <div  className={classes.cardContent}>
                             <Typography style={{textAlign:"center"}} variant="h5" gutterBottom>
                                 {product.name}
                             </Typography>
@@ -65,12 +65,13 @@ const LatestProduct = ({product}) => {
 }
 
 
-const NewestProduct = ({latestProduct}) => {
+const NewestProduct = ({latestProduct,darkMode}) => {
     const classes = useStyles();
     console.log("NewestProduct", latestProduct)
     return (
         <>
-            <Paper elevation={4}>
+            <CssBaseline/>
+            <Paper style={{transition: "0.6s"}} elevation={4}>
                 <div className={classes.space}/>
                 <div className={classes.space}/>
                 <div className={classes.space}/>
@@ -85,7 +86,7 @@ const NewestProduct = ({latestProduct}) => {
                     <Grid container justify={"center"} item xs={11} sm={11} md={7} spacing={8}>
                         {latestProduct.map((product) => (
                             <Grid item key={product.id} xs={12} sm={12} md={5} lg={5}>
-                                <LatestProduct product={product}/>
+                                <LatestProduct darkMode={darkMode} product={product}/>
                             </Grid>
                         ))}
                     </Grid>

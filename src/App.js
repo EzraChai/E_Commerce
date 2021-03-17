@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import {commerce} from "./lib/commerce";
 import {Products, Navbar, Cart, Checkout, Category, Footer, ProductInfo, MainPage} from "./components"
-import {Snackbar} from "@material-ui/core";
+import {Snackbar,ThemeProvider,createMuiTheme} from "@material-ui/core";
 import MuiAlert from '@material-ui/lab/Alert';
 
 function App() {
@@ -15,11 +15,30 @@ function App() {
     const [errorMessage, setErrorMessage] = useState("")
     const [categories, setCategories] = useState([])
     const [open, setOpen] = useState(false);
+    const [notNullObject,setNotNullObject] = useState([])
     const [latestProduct,setLatestProduct] = useState([])
+    const [darkMode,setDarkMode] = useState(false);
+    const [state, setState] = React.useState({checkedB: false,});
+
+    const theme = createMuiTheme({
+
+        palette:{
+            type: darkMode?"dark":"light",
+            background:{
+                paper:darkMode?"#1a1c1c":"#fff",
+                default:darkMode?"#424242":"#fafafa",
+            },
+        }
+    });
 
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
     }
+
+    const handleChange = (event) => {
+        setState({...state, [event.target.name]: event.target.checked});
+        setDarkMode(!darkMode)
+    };
 
     const fetchCart = async () => {
         setCart(await commerce.cart.retrieve());
@@ -27,7 +46,14 @@ function App() {
 
     const fetchCategories = async () => {
         const {data} = await commerce.categories.list();
-        setCategories(data)
+        data.forEach(removeNullProduct)
+    }
+
+    const removeNullProduct =(item)=>{
+        if(item.products !== 0){
+            console.log("Item not null", item)
+            setNotNullObject(prevState => [...prevState,item])
+        }
     }
 
     const fetchProduct = async () => {
@@ -51,11 +77,6 @@ function App() {
         const {cart} = await commerce.cart.add(productId, quantity);
         setCart(cart)
         handleClick()
-        return (
-            <>
-
-            </>
-        )
     }
 
 
@@ -100,58 +121,65 @@ function App() {
         fetchCategories();
         fetchCart();
         fetchProduct();
+        return(
+            setNotNullObject([])
+        )
     }, [])
 
     console.log(cart)
-    console.log("Running")
+    console.log("not Null List",notNullObject)
 
     return (
-        <div>
-            <Router>
-                <Navbar totalItems={cart.total_items} categories={categories}/>
-                <Switch>
-                    <Route exact path="/">
-                        <MainPage latestProduct={latestProduct}/>
-                    </Route>
-                    <Route exact path="/products">
-                        <Products products={products} onAddToCart={handleAddToCart}/>
-                    </Route>
-
-                    <Route exact path="/cart">
-                        <Cart cart={cart} handleUpdateCartQuantity={handleUpdateCartQuantity}
-                              handleRemoveCartQuantity={handleRemoveCartQuantity} handleEmptyCart={handleEmptyCart}/>
-                    </Route>
-
-
-                    <Route exact path="/checkout">
-                        <Checkout cart={cart}
-                                  order={order}
-                                  onCaptureCheckout={handleCaptureCheckout}
-                                  error={errorMessage}/>
-                    </Route>
-
-
-                    {categories.map((category) => (
-                        <Route exact path={`/category/${category.slug}`}>
-                            <Category category={category} onAddToCart={handleAddToCart}/>
+        <>
+            <ThemeProvider theme={theme}>
+                <Router>
+                    <Navbar totalItems={cart.total_items} handleChange={handleChange} state={state} categories={categories}/>
+                    <Switch>
+                        <Route exact path="/">
+                            <MainPage darkMode={darkMode} latestProduct={latestProduct} categories={notNullObject}/>
                         </Route>
-                    ))}
-
-                    {products.map((product) => (
-                        <Route exact path={`/product/${product.permalink}`}>
-                            <ProductInfo product={product} onAddToCart={handleAddToCart}/>
+                        <Route exact path="/products">
+                            <Products products={products} onAddToCart={handleAddToCart}/>
                         </Route>
-                    ))}
 
-                </Switch>
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="success">
-                        Added to Cart
-                    </Alert>
-                </Snackbar>
-                <Footer/>
-            </Router>
-        </div>
+                        <Route exact path="/cart">
+                            <Cart cart={cart} handleUpdateCartQuantity={handleUpdateCartQuantity}
+                                  handleRemoveCartQuantity={handleRemoveCartQuantity} handleEmptyCart={handleEmptyCart}/>
+                        </Route>
+
+
+                        <Route exact path="/checkout">
+                            <Checkout cart={cart}
+                                      order={order}
+                                      onCaptureCheckout={handleCaptureCheckout}
+                                      error={errorMessage}/>
+                        </Route>
+
+
+                        {notNullObject.map((category) => (
+                            <Route exact path={`/category/${category.slug}`}>
+                                <Category category={category} onAddToCart={handleAddToCart}/>
+                            </Route>
+                        ))}
+
+                        {products.map((product) => (
+                            <Route exact path={`/product/${product.permalink}`}>
+                                <ProductInfo product={product} onAddToCart={handleAddToCart}/>
+                            </Route>
+                        ))}
+
+                    </Switch>
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success">
+                            Added to Cart
+                        </Alert>
+                    </Snackbar>
+                    <Footer/>
+                </Router>
+            </ThemeProvider>
+
+
+        </>
     );
 }
 

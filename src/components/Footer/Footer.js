@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import {Paper} from "@material-ui/core";
 
 function Copyright() {
     return (
@@ -32,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3, 2),
         marginTop: 'auto',
         textAlign: 'center',
-        backgroundColor:
-            theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+        /*backgroundColor:
+            theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[1000],*/
     },
 }));
 
@@ -42,12 +43,15 @@ export default function StickyFooter() {
 
     return (
         <div className={classes.root}>
-            <CssBaseline/>
-            <footer className={classes.footer}>
-                <Container maxWidth="sm">
-                    <Copyright/>
-                </Container>
-            </footer>
+            <Paper>
+                <CssBaseline/>
+                <footer className={classes.footer}>
+                    <Container maxWidth="sm">
+                        <Copyright/>
+                    </Container>
+                </footer>
+            </Paper>
+
         </div>
     );
 }

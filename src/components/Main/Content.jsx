@@ -1,6 +1,16 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
-import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Paper} from "@material-ui/core";
+import {
+    Button,
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    CardMedia,
+    CssBaseline,
+    Grid,
+    Paper
+} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import {Link} from "react-router-dom"
@@ -59,12 +69,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const MainContent = ({latestProduct}) => {
+const MainContent = ({latestProduct,darkMode}) => {
     const classes = useStyles();
     return (
         <>
+            <CssBaseline/>
             <div className={classes.root}>
-                <Paper className={"mainPoint"} variant={"elevation"}>
+                <Paper className={"mainPoint"} style={{transition: "0.6s"}} variant={"elevation"}>
                     <div className={classes.space}/>
                     <div className={classes.space}/>
                     <Typography className={classes.text} style={{fontSize:"30px"}}  variant={"h6"}>OUR PRODUCTS</Typography>
@@ -78,7 +89,7 @@ const MainContent = ({latestProduct}) => {
                     <div className={classes.space}/>
                     <div className={classes.space}/>
                 </Paper>
-                <Paper style={{backgroundColor:"#f4fafb",}} variant={"elevation"}>
+                <Paper style={{backgroundColor:darkMode?"#3b3b3b":"#f4fafb",transition: "0.6s"}} variant={"elevation"}>
                     <div className={classes.space}/>
                     <div className={classes.space}/>
                     <div className={classes.space}/>
@@ -138,12 +149,14 @@ const MainContent = ({latestProduct}) => {
                         <div className={classes.space}/>
                     </Container>
                 </Paper>
-                    <NewestProduct latestProduct={latestProduct}/>
-                    <Paper style={{backgroundColor:"#f4fafb",}} variant={"elevation"} >
+                    <NewestProduct darkMode={darkMode} latestProduct={latestProduct}/>
+
+                    {/*Problem here*/}
+                    <Paper style={{backgroundColor:darkMode?"#3b3b3b":"#f4fafb",transition: "0.6s"}} variant={"elevation"} >
                         <div className={classes.space}/>
                         <div className={classes.space}/>
                         <div className={classes.space}/>
-                        <Grid container justify={"center"} spacing={7} >
+                        <Grid container justify={"center"} >
                             <Grid item className={classes.Learn}>
                                 <Typography className={classes.Facebook} variant={"h4"}>Like us now on <span><FacebookIcon style={{fontSize:"90%"}}/> </span> Facebook <br/> for more updates </Typography>
                                 <Button variant={"outlined"} onClick={()=>window.open('https://www.facebook.com/NagaworldINT', '_blank')} style={{marginLeft:"20px",padding:"10px 15px"}}>

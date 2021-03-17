@@ -20,9 +20,12 @@ export default makeStyles((theme) => ({
         fontFamily: "'Nunito', sans-serif",
         ["@media (max-width:800px)"]: {
             fontWeight:"400",
+            fontSize:"16px",
         }
     },
     image: {
+        borderWidth:"1px",
+        borderColor:"black",
         marginRight: '10px',
     },
     menuButton: {
