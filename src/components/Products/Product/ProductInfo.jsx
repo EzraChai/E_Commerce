@@ -7,11 +7,12 @@ import {
     Button,
     Spacing,
     Box,
-    Fab,
+    Fab, IconButton,
 } from "@material-ui/core";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import useStyles from "./styles";
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import Zoom from 'react-img-zoom'
 
 const ProductInfo = ({product}) => {
     const classes = useStyles();
@@ -21,12 +22,36 @@ const ProductInfo = ({product}) => {
         setQuantity(event.target.value);
     };*/
 
-    useState(()=>{
+    useState(() => {
         window.scrollTo(0, 0);
-    },[])
+    }, [])
 
     const shopeeClicked = () => {
-        window.open(`https://shopee.com.my/${product.sku}`,"_blank");
+        window.open(`https://shopee.com.my/${product.sku}`, "_blank");
+    }
+
+    const ImageComponent = () => {
+        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // some code..
+            return (
+                <>
+                    <img width={"100%"} style={{borderRadius: "2px"}} src={product.media.source}
+                         alt={product.name}/>
+                </>
+            )
+        } else {
+            return (
+                <div style={{borderRadius: "2px"}}>
+                    <Zoom
+                        img={product.media.source}
+                        zoomScale={3}
+                        width={550}
+                        height={550}
+                        transitionTime={0.5}
+                    />
+                </div>
+            )
+        }
     }
 
     return (
@@ -43,8 +68,19 @@ const ProductInfo = ({product}) => {
 
                         <Grid container spacing={4}>
                             <Grid item xs={12} sm={12} md={6}>
-                                <img width={"100%"} style={{borderRadius: "2px"}} src={product.media.source}
-                                     alt={product.name}/>
+                                <ImageComponent/>
+                                {/*<div style={{borderRadius: "2px"}}>
+                                    <Zoom
+                                        img={product.media.source}
+                                        zoomScale={3}
+                                        width={550}
+                                        height={550}
+                                        transitionTime={0.5}
+                                    />
+                                </div>*/}
+
+                                {/*<img width={"100%"} style={{borderRadius: "2px"}} src={product.media.source}
+                                     alt={product.name}/>*/}
                             </Grid>
                             <Grid container justify={"center"} item xs={12} sm={12} md={6}>
                                 <Grid item>
@@ -64,8 +100,8 @@ const ProductInfo = ({product}) => {
                                           justify="flex-end"
                                           alignItems="flex-end"
                                           style={{margin: "30px 2px"}}>
-                                        <Grid item style={{paddingRight:"10px"}}>
-                                            <Button variant={"outlined"} style={{paddingRight:"17px"}} onClick={() => {
+                                        <Grid item style={{paddingRight: "10px"}}>
+                                            <Button variant={"outlined"} style={{paddingRight: "17px"}} onClick={() => {
                                                 shopeeClicked()
                                             }}>
                                                 <Grid container alignItems={"center"}>

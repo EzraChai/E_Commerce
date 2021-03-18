@@ -99,7 +99,7 @@ const MainContent = ({latestProduct,darkMode}) => {
                         <div className={classes.space}/>
                         <Grid container spacing={4} direction={"row"} justify={"center"}>
                             <Grid item xs={9} md={4} lg={4}>
-                                <Card>
+                                <Card data-aos="zoom-in-up">
                                     <CardActionArea >
                                         <CardMedia
                                             className={classes.media}
@@ -114,7 +114,7 @@ const MainContent = ({latestProduct,darkMode}) => {
                             <Grid item xs={9} md={4} lg={4}>
                                 <div className={classes.space}/>
                                 <div className={classes.space}/>
-                                <Card >
+                                <Card data-aos="zoom-in-up">
                                     <CardActionArea>
                                         <CardMedia
                                             className={classes.media}
@@ -129,17 +129,20 @@ const MainContent = ({latestProduct,darkMode}) => {
                                 <div className={classes.space}/>
                             </Grid>
                             <Grid item xs={9} md={4} lg={4}>
-                                <Card >
-                                    <CardActionArea>
-                                        <CardMedia
-                                            className={classes.media}
-                                            image="https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                            title={"Customs"}/>
-                                        <CardContent>
-                                            <Typography className={classes.CardText} variant={"h6"}>Customs</Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
+                                <div data-aos="zoom-in-up">
+                                    <Card >
+                                        <CardActionArea>
+                                            <CardMedia
+                                                className={classes.media}
+                                                image="https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                                title={"Customs"}/>
+                                            <CardContent>
+                                                <Typography className={classes.CardText} variant={"h6"}>Customs</Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
+                                </div>
+
                             </Grid>
                         </Grid>
                         <div className={classes.space}/>

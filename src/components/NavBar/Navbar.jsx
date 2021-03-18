@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     AppBar,
     Toolbar,
@@ -7,15 +7,17 @@ import {
     Avatar,
     FormControlLabel,
     Switch,
+    Tooltip,
     withStyles, Grid,
 } from "@material-ui/core";
 import {Link, useLocation} from "react-router-dom"
 import FacebookIcon from '@material-ui/icons/Facebook';
 import Brightness2RoundedIcon from '@material-ui/icons/Brightness2Rounded';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import useStyles from './styles';
 
 
-function Navbar({handleChange, state}) {
+function Navbar({handleChange, state,darkMode}) {
     const classes = useStyles();
     const location = useLocation();
 
@@ -107,20 +109,25 @@ function Navbar({handleChange, state}) {
                             </IconButton>*/}
                             <Grid container alignItems="flex-end" direction="row">
                                 <Grid item>
-                                    <FormControlLabel style={{marginBottom: "1px", marginLeft: "2px"}}
-                                                      control={<IOSSwitch checked={state.checkedB}
-                                                                          onChange={handleChange} name="checkedB"/>}
-                                                      labelPlacement="end"
-                                                      label={<Brightness2RoundedIcon
-                                                          style={{marginTop: "4px", color: "#fcba03"}}
-                                                          color={"disabled"}/>
-                                                      }
-                                    />
+                                    <Tooltip title={darkMode?"Enable Light Mode":"Enable Dark Mode"} aria-label={darkMode?"enable-light-mode":"enable-dark-mode"}>
+                                        <FormControlLabel style={{marginBottom: "1px", marginLeft: "2px"}}
+                                                          control={<IOSSwitch checked={state.checkedB}
+                                                                              onChange={handleChange} name="checkedB"/>}
+                                                          labelPlacement="end"
+                                                          label={!darkMode?<Brightness2RoundedIcon
+                                                              style={{marginTop: "4px", color: "#fcba03"}}
+                                                              />:<WbSunnyIcon style={{marginTop: "6px", color: "#fc7b03"}}/>
+                                                          }
+                                        />
+                                    </Tooltip>
                                 </Grid>
+                                <Tooltip title={"Facebook"} aria-label={"facebook"}>
                                 <Grid item>
-                                    <Facebook/>
+
+                                        <Facebook/>
 
                                 </Grid>
+                                </Tooltip>
                                 {/*<Grid item>
                                     <IconButton onClick={() => window.open('https://shopee.com.my/ty_studio', "_blank")}>
                                         <img style={{width: "17.5px", marginTop: "1px", height: "26px"}}

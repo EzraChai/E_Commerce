@@ -4,15 +4,16 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 // import Navbar from "./components/NavBar/Navbar";
 
 import {commerce} from "./lib/commerce";
-import {Products, Navbar, Cart, Checkout, Category, Footer, ProductInfo, MainPage} from "./components"
+import {Products, Navbar, Category, Footer, ProductInfo, MainPage} from "./components"
 import {Snackbar,ThemeProvider,createMuiTheme} from "@material-ui/core";
 import MuiAlert from '@material-ui/lab/Alert';
+import Grow from '@material-ui/core/Grow';
 
 function App() {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState({});
+    /*const [cart, setCart] = useState({});
     const [order, setOrder] = useState({});
-    const [errorMessage, setErrorMessage] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")*/
     const [categories, setCategories] = useState([])
     const [open, setOpen] = useState(false);
     const [notNullObject,setNotNullObject] = useState([])
@@ -31,18 +32,23 @@ function App() {
         }
     });
 
+    function GrowTransition(props) {
+        return <Grow {...props} />;
+    }
+
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
     }
 
     const handleChange = (event) => {
         setState({...state, [event.target.name]: event.target.checked});
-        setDarkMode(!darkMode)
+        setDarkMode(!darkMode);
+        setOpen(true);
     };
 
-    const fetchCart = async () => {
+    /*const fetchCart = async () => {
         setCart(await commerce.cart.retrieve());
-    }
+    }*/
 
     const fetchCategories = async () => {
         const {data} = await commerce.categories.list();
@@ -61,9 +67,9 @@ function App() {
         setProducts(data);
     }
 
-    const handleClick = () => {
+    /*const handleClick = () => {
         setOpen(true);
-    };
+    };*/
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -72,7 +78,7 @@ function App() {
         setOpen(false);
     };
 
-    const handleAddToCart = async (productId, quantity) => {
+    /*const handleAddToCart = async (productId, quantity) => {
 
         const {cart} = await commerce.cart.add(productId, quantity);
         setCart(cart)
@@ -98,9 +104,9 @@ function App() {
     const refreshCart = async () => {
         const newCart = await commerce.cart.refresh();
         setCart(newCart)
-    }
+    }*/
 
-    const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    /*const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
         try {
             const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
             setOrder(incomingOrder);
@@ -108,7 +114,7 @@ function App() {
         } catch (e) {
             setErrorMessage(e.data.error.message)
         }
-    }
+    }*/
 
     const fetchNewestProduct = async () =>{
         const {data} = await commerce.products.list({limit:4});
@@ -119,59 +125,59 @@ function App() {
     useEffect(() => {
         fetchNewestProduct();
         fetchCategories();
-        fetchCart();
+        // fetchCart();
         fetchProduct();
         return(
             setNotNullObject([])
         )
     }, [])
 
-    console.log(cart)
-    console.log("not Null List",notNullObject)
+    /*console.log(cart)
+    console.log("not Null List",notNullObject)*/
 
     return (
         <>
             <ThemeProvider theme={theme}>
                 <Router>
-                    <Navbar totalItems={cart.total_items} handleChange={handleChange} state={state} categories={categories}/>
+                    <Navbar handleChange={handleChange} darkMode={darkMode} state={state} categories={categories}/>
                     <Switch>
                         <Route exact path="/">
                             <MainPage darkMode={darkMode} latestProduct={latestProduct} categories={notNullObject}/>
                         </Route>
                         <Route exact path="/products">
-                            <Products products={products} onAddToCart={handleAddToCart}/>
+                            <Products products={products} />
                         </Route>
 
-                        <Route exact path="/cart">
+
+                        {/*<Route exact path="/cart">
                             <Cart cart={cart} handleUpdateCartQuantity={handleUpdateCartQuantity}
                                   handleRemoveCartQuantity={handleRemoveCartQuantity} handleEmptyCart={handleEmptyCart}/>
-                        </Route>
+                        </Route>*/}
 
-
-                        <Route exact path="/checkout">
+                        {/*<Route exact path="/checkout">
                             <Checkout cart={cart}
                                       order={order}
                                       onCaptureCheckout={handleCaptureCheckout}
                                       error={errorMessage}/>
-                        </Route>
+                        </Route>*/}
 
 
                         {notNullObject.map((category) => (
                             <Route exact path={`/category/${category.slug}`}>
-                                <Category category={category} onAddToCart={handleAddToCart}/>
+                                <Category category={category}/>
                             </Route>
                         ))}
 
                         {products.map((product) => (
                             <Route exact path={`/product/${product.permalink}`}>
-                                <ProductInfo product={product} onAddToCart={handleAddToCart}/>
+                                <ProductInfo product={product} />
                             </Route>
                         ))}
 
                     </Switch>
-                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="success">
-                            Added to Cart
+                    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success" TransitionComponent={state.Transition}>
+                            {darkMode? "Dark Mode Enabled":"Light Mode Enabled"}
                         </Alert>
                     </Snackbar>
                     <Footer/>
