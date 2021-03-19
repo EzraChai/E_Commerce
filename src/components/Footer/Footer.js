@@ -8,7 +8,7 @@ import {Paper} from "@material-ui/core";
 
 function Copyright() {
     return (
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="body2" style={{color:"white"}} color="textSecondary">
             {'Copyright © '}
             <Link color="inherit" href="https://www.facebook.com/NagaworldINT">
                 TY Studio · Concept Tee
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2),
     },
     footer: {
+        backgroundColor:"#222222",
         padding: theme.spacing(3, 2),
         marginTop: 'auto',
         textAlign: 'center',

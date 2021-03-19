@@ -13,8 +13,27 @@ export default makeStyles((theme) => ({
         position:"fixed",
         padding:"15px 10px",
         borderRadius:"15%",
+        ["@media (max-width:1410px)"]:{
+            margin:"7% 2%",
+        },
+        ["@media (max-width:1200px)"]:{
+            margin:"10% 2%",
+        },
         ["@media (max-width:800px)"]:{
-            margin:"11% 1%",
+            margin:"12% 2%",
+        },
+        ["@media (max-width:450px)"]:{
+            margin:"18% 2%",
+        },
+    },
+    back:{
+        margin:"5% 2.2%",
+        position:"fixed",
+        padding:"15px 10px",
+        borderRadius:"15%",
+        zIndex:"1",
+        ["@media (max-width:1410px)"]:{
+            margin:"68px 12px",
         }
     },
     title:{

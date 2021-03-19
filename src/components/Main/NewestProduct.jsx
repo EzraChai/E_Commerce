@@ -52,7 +52,7 @@ const LatestProduct = ({product,darkMode}) => {
                     <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
                     <CardContent style={{backgroundColor:darkMode?"#3b3b3b":"white"}}>
                         <div  className={classes.cardContent}>
-                            <Typography style={{textAlign:"center"}} variant="h5" gutterBottom>
+                            <Typography style={{textAlign:"center",fontFamily:"'Nunito', sans-serif",}} variant="h5" gutterBottom>
                                 {product.name}
                             </Typography>
                         </div>
@@ -67,7 +67,7 @@ const LatestProduct = ({product,darkMode}) => {
 
 const NewestProduct = ({latestProduct,darkMode}) => {
     const classes = useStyles();
-    console.log("NewestProduct", latestProduct)
+    console.log("I'm rendering")
     return (
         <>
             <CssBaseline/>
@@ -101,4 +101,4 @@ const NewestProduct = ({latestProduct,darkMode}) => {
     );
 };
 
-export default NewestProduct;
+export default React.memo(NewestProduct);

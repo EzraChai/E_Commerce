@@ -42,4 +42,17 @@ export default makeStyles((theme) => ({
             padding: theme.spacing(3),
         },
     },
+    space:{
+        padding:"0 60px",
+        ["@media (max-width:800px)"]:{
+            padding:"0 5px",
+        }
+    },
+    smallPic:{
+        width: "108px",
+        height: "108px",
+        ["@media (max-width:800px)"]: {
+            width: "72px", height: "72px"
+        }
+    }
 }));

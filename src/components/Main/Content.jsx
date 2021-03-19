@@ -18,58 +18,70 @@ import NewestProduct from "./NewestProduct";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 
-const useStyles = makeStyles((theme) => ({
-    root:{
-        paddingTop:"900px",
-        ["@media (max-width:800px)"]:{
-            paddingTop:"250px",
-        }
-    },
-    Learn:{
-        ["@media (max-width:800px)"]:{
-            marginLeft:"25px",
-        }
-    },
-    container:{
-        height:"100vh",
-        paddingTop:"600px",
-    },
-    text:{
-        padding:"20px 20px",
-        fontFamily: "'Nunito', sans-serif",
-        fontWeight:400,
-        textAlign:"center",
-    },
-    Facebook:{
-        padding:"20px 20px",
-        fontFamily: "'Nunito', sans-serif",
-        fontWeight:400,
-    },
-    CardText:{
-        fontFamily: "'Nunito', sans-serif",
-        fontWeight:600,
-    },
-    grid:{
-        display:"flex",
-        justifyContent:"center",
-    },
-    buttonForProducts:{
 
-    },
-    space:{
-        height:'30px'
-    },
-    media:{
-        height: '0',
-        paddingTop:"470px",
-        ["@media (max-width:800px)"]:{
-            paddingTop:"300px",
-        },
-        width:"40",
-    }
-}))
 
 const MainContent = ({latestProduct,darkMode}) => {
+
+    const useStyles = makeStyles((theme) => ({
+        root:{
+            paddingTop:"900px",
+            ["@media (max-width:800px)"]:{
+                paddingTop:"250px",
+            }
+        },
+        Learn:{
+            ["@media (max-width:800px)"]:{
+                marginLeft:"25px",
+            }
+        },
+        container:{
+            height:"100vh",
+            paddingTop:"600px",
+        },
+        text:{
+            padding:"20px 20px",
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight:300,
+            textAlign:"center",
+        },
+        Facebook:{
+            padding:"20px 20px",
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight:400,
+        },
+        CardText:{
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight:400,
+        },
+        grid:{
+            display:"flex",
+            justifyContent:"center",
+        },
+        buttonForProducts:{
+
+        },
+        space:{
+            height:'30px'
+        },
+        media:{
+            height: '0',
+            paddingTop:"470px",
+            ["@media (max-width:800px)"]:{
+                paddingTop:"300px",
+            },
+            width:"40",
+        },
+        bottom:{
+            backgroundColor:darkMode?"#3b3b3b":"#f4fafb",
+            backgroundImage:darkMode?"":"url('https://images.unsplash.com/photo-1490131784822-b4626a8ec96a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')",
+            backgroundSize:"cover",
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: '50% 76%',
+            transition: "0.6s"
+        }
+    }))
+
+
     const classes = useStyles();
     return (
         <>
@@ -98,19 +110,20 @@ const MainContent = ({latestProduct,darkMode}) => {
                         <div className={classes.space}/>
                         <div className={classes.space}/>
                         <Grid container spacing={4} direction={"row"} justify={"center"}>
-                            <Grid item xs={9} md={4} lg={4}>
-                                <Card data-aos="zoom-in-up">
-                                    <CardActionArea >
-                                        <CardMedia
-                                            className={classes.media}
-                                            image="https://i.ibb.co/7zDnGBH/sahil-pandita-bs-Dlc-Gg9-Nh4-unsplash-min.webp"
-                                            title={"Festivals"}/>
-                                        <CardContent>
-                                            <Typography className={classes.CardText} variant={"h6"}>Festivals</Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Grid>
+                                <Grid item xs={9} md={4} lg={4}>
+                                    <Card>
+                                        <CardActionArea component={Link} to={`/category/2`}>
+                                            <CardMedia
+                                                className={classes.media}
+                                                image="https://i.ibb.co/7zDnGBH/sahil-pandita-bs-Dlc-Gg9-Nh4-unsplash-min.webp"
+                                                title={"Festivals"}/>
+                                            <CardContent>
+                                                <Typography className={classes.CardText} variant={"h6"}>Festivals</Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
+                                </Grid>
+
                             <Grid item xs={9} md={4} lg={4}>
                                 <div className={classes.space}/>
                                 <div className={classes.space}/>
@@ -129,12 +142,12 @@ const MainContent = ({latestProduct,darkMode}) => {
                                 <div className={classes.space}/>
                             </Grid>
                             <Grid item xs={9} md={4} lg={4}>
-                                <div data-aos="zoom-in-up">
+                                <div >
                                     <Card >
                                         <CardActionArea>
                                             <CardMedia
                                                 className={classes.media}
-                                                image="https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                                image="https://i.ibb.co/Kj5nhDr/keagan-henman-x-PJYL0l5-Ii8-unsplash-min-1.jpg"
                                                 title={"Customs"}/>
                                             <CardContent>
                                                 <Typography className={classes.CardText} variant={"h6"}>Customs</Typography>
@@ -155,8 +168,7 @@ const MainContent = ({latestProduct,darkMode}) => {
                     <NewestProduct darkMode={darkMode} latestProduct={latestProduct}/>
 
                     {/*Problem here*/}
-                    <Paper style={{backgroundColor:darkMode?"#3b3b3b":"#f4fafb",transition: "0.6s"}} variant={"elevation"} >
-                        <div className={classes.space}/>
+                    <Paper className={classes.bottom} variant={"elevation"} >
                         <div className={classes.space}/>
                         <div className={classes.space}/>
                         <Grid container justify={"center"} >
@@ -168,6 +180,11 @@ const MainContent = ({latestProduct,darkMode}) => {
                                 </Button>
                             </Grid>
                         </Grid>
+                        <div className={classes.space}/>
+                        <div className={classes.space}/>
+                        <div className={classes.space}/>
+                        <div className={classes.space}/>
+                        <div className={classes.space}/>
                         <div className={classes.space}/>
                         <div className={classes.space}/>
                         <div className={classes.space}/>

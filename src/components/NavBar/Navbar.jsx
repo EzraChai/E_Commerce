@@ -17,7 +17,7 @@ import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import useStyles from './styles';
 
 
-function Navbar({handleChange, state,darkMode}) {
+function Navbar({handleChange, state, darkMode}) {
     const classes = useStyles();
     const location = useLocation();
 
@@ -75,6 +75,36 @@ function Navbar({handleChange, state,darkMode}) {
         );
     });
 
+    const DarkModeToggle = () => {
+        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // some code..
+            return (
+                <FormControlLabel id={"DarkModeButton"} style={{marginBottom: "1px", marginLeft: "2px"}}
+                                  control={<IOSSwitch checked={state.checkedB}
+                                                      onChange={handleChange} name="checkedB"/>}
+                                  labelPlacement="end"
+                                  label={!darkMode ? <Brightness2RoundedIcon
+                                      style={{marginTop: "4px", color: "#fcba03"}}
+                                  /> : <WbSunnyIcon style={{marginTop: "6px", color: "#fc7b03"}}/>
+                                  }
+                />
+            )
+        } else {
+            return(
+            <Tooltip title={darkMode ? "Enable Light Mode" : "Enable Dark Mode"}
+                     aria-label={darkMode ? "enable-light-mode" : "enable-dark-mode"}>
+                <FormControlLabel id={"DarkModeButton"} style={{marginBottom: "1px", marginLeft: "2px"}}
+                                  control={<IOSSwitch checked={state.checkedB}
+                                                      onChange={handleChange} name="checkedB"/>}
+                                  labelPlacement="end"
+                                  label={!darkMode ? <Brightness2RoundedIcon
+                                      style={{marginTop: "4px", color: "#fcba03"}}
+                                  /> : <WbSunnyIcon style={{marginTop: "6px", color: "#fc7b03"}}/>
+                                  }/>
+            </Tooltip>)
+        }
+    }
+
     const Facebook = () => {
         if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // some code..
@@ -94,11 +124,13 @@ function Navbar({handleChange, state,darkMode}) {
         <div>
             <AppBar position={"fixed"} className={classes.appBar} color={"inherit"}>
                 <Toolbar>
+                    <Tooltip>
                     <Typography component={Link} to={"/"} variant={"h6"} className={classes.title} color={"inherit"}>
                         <Avatar src={"https://i.ibb.co/2WLm1My/53078607-2630694290291910-8889152933308923904-o.png"}
                                 alt={"Brand Logo"} height="25px" className={classes.image}/>
                         TY Studio · Concept Tee
                     </Typography>
+                    </Tooltip>
                     <div className={classes.grow}/>
                     {location.pathname !== "/cart" && location.pathname !== "/checkout" ? (
                         <div className={classes.button}>
@@ -109,24 +141,14 @@ function Navbar({handleChange, state,darkMode}) {
                             </IconButton>*/}
                             <Grid container alignItems="flex-end" direction="row">
                                 <Grid item>
-                                    <Tooltip title={darkMode?"Enable Light Mode":"Enable Dark Mode"} aria-label={darkMode?"enable-light-mode":"enable-dark-mode"}>
-                                        <FormControlLabel style={{marginBottom: "1px", marginLeft: "2px"}}
-                                                          control={<IOSSwitch checked={state.checkedB}
-                                                                              onChange={handleChange} name="checkedB"/>}
-                                                          labelPlacement="end"
-                                                          label={!darkMode?<Brightness2RoundedIcon
-                                                              style={{marginTop: "4px", color: "#fcba03"}}
-                                                              />:<WbSunnyIcon style={{marginTop: "6px", color: "#fc7b03"}}/>
-                                                          }
-                                        />
-                                    </Tooltip>
+                                    <DarkModeToggle/>
                                 </Grid>
                                 <Tooltip title={"Facebook"} aria-label={"facebook"}>
-                                <Grid item>
+                                    <Grid item>
 
                                         <Facebook/>
 
-                                </Grid>
+                                    </Grid>
                                 </Tooltip>
                                 {/*<Grid item>
                                     <IconButton onClick={() => window.open('https://shopee.com.my/ty_studio', "_blank")}>

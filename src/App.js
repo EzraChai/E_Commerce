@@ -5,9 +5,11 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import {commerce} from "./lib/commerce";
 import {Products, Navbar, Category, Footer, ProductInfo, MainPage} from "./components"
-import {Snackbar,ThemeProvider,createMuiTheme} from "@material-ui/core";
+import {Snackbar, ThemeProvider, createMuiTheme, Typography} from "@material-ui/core";
 import MuiAlert from '@material-ui/lab/Alert';
-import Grow from '@material-ui/core/Grow';
+import {Alert} from "@material-ui/lab";
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -19,7 +21,7 @@ function App() {
     const [notNullObject,setNotNullObject] = useState([])
     const [latestProduct,setLatestProduct] = useState([])
     const [darkMode,setDarkMode] = useState(false);
-    const [state, setState] = React.useState({checkedB: false,});
+    const [state, setState] = React.useState({checkedB: false});
 
     const theme = createMuiTheme({
 
@@ -32,9 +34,9 @@ function App() {
         }
     });
 
-    function GrowTransition(props) {
+   /* function GrowTransition(props) {
         return <Grow {...props} />;
-    }
+    }*/
 
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -44,6 +46,8 @@ function App() {
         setState({...state, [event.target.name]: event.target.checked});
         setDarkMode(!darkMode);
         setOpen(true);
+        localStorage.setItem("Dark",!darkMode);
+
     };
 
     /*const fetchCart = async () => {
@@ -117,9 +121,23 @@ function App() {
     }*/
 
     const fetchNewestProduct = async () =>{
-        const {data} = await commerce.products.list({limit:4});
+        const {data} = await commerce.products.list();
+        data.reverse()
+        data.splice(4,data.length-4);
+        console.log("DAta",data)
         setLatestProduct(data);
-        console.log("data",data)
+    }
+
+    const beforeClose = () =>{
+        setNotNullObject([])
+    }
+
+    const openWindow = () =>{
+        let isDarkModeEnabled = localStorage.getItem("Dark");
+        if(isDarkModeEnabled === "true"){
+            document.getElementById("DarkModeButton").click()
+            console.info("Dark Mode Enabled.")
+        }
     }
 
     useEffect(() => {
@@ -127,8 +145,9 @@ function App() {
         fetchCategories();
         // fetchCart();
         fetchProduct();
+        openWindow()
         return(
-            setNotNullObject([])
+            beforeClose()
         )
     }, [])
 
@@ -145,7 +164,7 @@ function App() {
                             <MainPage darkMode={darkMode} latestProduct={latestProduct} categories={notNullObject}/>
                         </Route>
                         <Route exact path="/products">
-                            <Products products={products} />
+                            <Products products={products} darkMode={darkMode} />
                         </Route>
 
 
@@ -162,29 +181,32 @@ function App() {
                         </Route>*/}
 
 
-                        {notNullObject.map((category) => (
-                            <Route exact path={`/category/${category.slug}`}>
-                                <Category category={category}/>
+                            <Route exact path={"/category"}>
+                                <Category darkMode={darkMode} indexValue={1} categories={notNullObject}/>
+                            </Route>
+
+                        {notNullObject.map((category,index)=>(
+                            <Route exact path={`/category/${index + 1}`}>
+                                <Category darkMode={darkMode} indexValue={index} categories={notNullObject}/>
                             </Route>
                         ))}
 
                         {products.map((product) => (
                             <Route exact path={`/product/${product.permalink}`}>
-                                <ProductInfo product={product} />
+                                <ProductInfo darkMode={darkMode} product={product} />
                             </Route>
                         ))}
 
                     </Switch>
                     <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-                        <Alert onClose={handleClose} severity="success" TransitionComponent={state.Transition}>
-                            {darkMode? "Dark Mode Enabled":"Light Mode Enabled"}
+                        <Alert onClose={handleClose} severity="success">
+                            {darkMode ? "Dark Mode Enabled" : (
+                                <Typography variant={"h6"}> Light Mode Enabled <WbSunnyIcon/> </Typography>)}
                         </Alert>
                     </Snackbar>
                     <Footer/>
                 </Router>
             </ThemeProvider>
-
-
         </>
     );
 }

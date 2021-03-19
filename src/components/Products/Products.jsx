@@ -14,7 +14,7 @@ const products = [
     {id:2,name:"Apple Macbook ",description:"Apple Mac Book",price: 'RM 10000',image:'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=1200&hei=630&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1603332211000'},
 ]*/
 
-const Products = ({products, onAddToCart}) => {
+const Products = ({products, darkMode}) => {
     const [done,setDone] = useState(false);
     const classes = makeStyles();
 
@@ -43,7 +43,7 @@ const Products = ({products, onAddToCart}) => {
                             <>
                                 {products.map((product) => (
                                     <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-                                        <Product duct product={product} onAddToCart={onAddToCart} categories/>
+                                        <Product duct product={product} darkMode={darkMode} categories/>
                                     </Grid>
                                 ))}
                             </>
