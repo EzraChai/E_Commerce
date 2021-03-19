@@ -124,13 +124,11 @@ function Navbar({handleChange, state, darkMode}) {
         <div>
             <AppBar position={"fixed"} className={classes.appBar} color={"inherit"}>
                 <Toolbar>
-                    <Tooltip>
                     <Typography component={Link} to={"/"} variant={"h6"} className={classes.title} color={"inherit"}>
                         <Avatar src={"https://i.ibb.co/2WLm1My/53078607-2630694290291910-8889152933308923904-o.png"}
                                 alt={"Brand Logo"} height="25px" className={classes.image}/>
                         TY Studio · Concept Tee
                     </Typography>
-                    </Tooltip>
                     <div className={classes.grow}/>
                     {location.pathname !== "/cart" && location.pathname !== "/checkout" ? (
                         <div className={classes.button}>
