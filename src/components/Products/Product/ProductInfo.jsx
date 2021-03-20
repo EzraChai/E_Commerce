@@ -23,6 +23,7 @@ const ProductInfo = ({product, darkMode}) => {
     const [secondPicture, setSecondPicture] = useState()
     const [thirdPicture, setThirdPicture] = useState()
     const [fourthPicture, setfourthPicture] = useState()
+    const [isAPhone, setIsAPhone] = useState(false)
     const [firstPictureClicked, setFirstPictureClicked] = useState(false)
     const [secondPictureClicked, setSecondPictureClicked] = useState(false)
     const [thirdPictureClicked, setThirdPictureClicked] = useState(false)
@@ -66,6 +67,9 @@ const ProductInfo = ({product, darkMode}) => {
         if (product.assets[2]) {
             setSecondPicture(product.assets[1].url)
             setThirdPicture(product.assets[2].url)
+        }
+        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            setIsAPhone(true)
         }
         if (product.assets[3]) {
             setfourthPicture(product.assets[3].url)
@@ -138,16 +142,22 @@ const ProductInfo = ({product, darkMode}) => {
                     <CardContent>
                         <Grid container justify={"center"} spacing={2}>
                             <Grid item xs={4} lg={3} style={{paddingTop: "16px"}}>
-                                <img className={classes.smallPic} onMouseEnter={() => changeImage1()}
-                                     src={secondPicture} alt={secondPicture}/>
+                                {isAPhone ? <img className={classes.smallPic} onClick={() => changeImage1()}
+                                                 src={secondPicture} alt={secondPicture}/> :
+                                    <img className={classes.smallPic} onMouseEnter={() => changeImage1()}
+                                         src={secondPicture} alt={secondPicture}/>}
                             </Grid>
                             <Grid item xs={4} lg={3} style={{paddingTop: "16px"}}>
-                                <img className={classes.smallPic} onMouseEnter={() => changeImage2()}
-                                     src={thirdPicture} alt={thirdPicture}/>
+                                {isAPhone ? <img className={classes.smallPic} onClick={() => changeImage2()}
+                                                 src={thirdPicture} alt={thirdPicture}/> :
+                                    <img className={classes.smallPic} onMouseEnter={() => changeImage2()}
+                                         src={thirdPicture} alt={thirdPicture}/>}
                             </Grid>
                             <Grid item xs={4} lg={3} style={{paddingTop: "16px"}}>
-                                <img className={classes.smallPic} onMouseEnter={() => changeImage3()}
-                                     src={fourthPicture} alt={fourthPicture}/>
+                                {isAPhone ? <img className={classes.smallPic} onClick={() => changeImage3()}
+                                                 src={fourthPicture} alt={fourthPicture}/> :
+                                    <img className={classes.smallPic} onMouseEnter={() => changeImage3()}
+                                         src={fourthPicture} alt={fourthPicture}/>}
                             </Grid>
                         </Grid>
                     </CardContent>
@@ -158,27 +168,31 @@ const ProductInfo = ({product, darkMode}) => {
                 <div>
                     <Grid container justify={"center"} spacing={2}>
                         <Grid item lg={3} style={{paddingTop: "16px"}}>
-                            <img className={classes.smallPic} onClick={() => changePicture1()}
-                                 src={secondPicture} alt={secondPicture}/>
+                            {isAPhone ? <img className={classes.smallPic} onClick={() => changePicture1()}
+                                             src={secondPicture} alt={secondPicture}/> :
+                                <img className={classes.smallPic} onMouseEnter={() => changePicture1()}
+                                     src={secondPicture} alt={secondPicture}/>}
                         </Grid>
                         <Grid item lg={3} style={{paddingTop: "16px"}}>
-                            <img className={classes.smallPic} onClick={() => changePicture2()}
-                                 src={thirdPicture} alt={thirdPicture}/>
+                            {isAPhone ? <img className={classes.smallPic} onClick={() => changePicture2()}
+                                             src={thirdPicture} alt={thirdPicture}/> :
+                                <img className={classes.smallPic} onMouseEnter={() => changePicture1()}
+                                     src={thirdPicture} alt={thirdPicture}/>}
                         </Grid>
                     </Grid>
                 </div>
             )
-        }else{
+        } else {
             return (<></>)
         }
     }
 
     const ImageComponent = () => {
-        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        if (setIsAPhone) {
             // some code..
             return (
                 <>
-                    <img width={"100%"} style={{borderRadius: "2px"}} src={currentPicture}
+                    <img width={"100%"} style={{borderRadius: "2px", cursor: "zoom-in"}} src={currentPicture}
                          alt={product.name}/>
                 </>
             )

@@ -44,7 +44,7 @@ const Product = ({product,darkMode}) => {
     console.log("product", product.permalink);
     return (
         <div key={product.name}>
-            <Card className={classes.root}>
+            <Card variant={"outlined"} className={classes.root}>
                 <CardActionArea component={Link} to={`/product/${product.permalink}`}>
                     <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
                     <CardContent>
