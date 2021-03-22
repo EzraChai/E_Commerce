@@ -10,6 +10,7 @@ import {
     Tooltip,
     withStyles, Grid, Fab,
 } from "@material-ui/core";
+import {animateScroll as scroll} from 'react-scroll'
 import {Link, useLocation} from "react-router-dom"
 import FacebookIcon from '@material-ui/icons/Facebook';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
@@ -131,7 +132,7 @@ function Navbar({handleChange, state, darkMode}) {
         <div>
             <AppBar position={"fixed"} className={classes.appBar} color={"inherit"}>
                 <Toolbar>
-                    <Typography component={Link} to={"/"} variant={"h6"} className={classes.title} color={"inherit"}>
+                    <Typography component={Link} to={"/"} variant={"h6"} onClick={()=>scroll.scrollToTop()} className={classes.title} color={"inherit"}>
                         <Avatar src={"https://i.ibb.co/2WLm1My/53078607-2630694290291910-8889152933308923904-o.png"}
                                 alt={"Brand Logo"} height="25px" className={classes.image}/>
                         TY Studio · Concept Tee
