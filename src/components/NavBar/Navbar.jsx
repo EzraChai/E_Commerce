@@ -25,10 +25,10 @@ function Navbar({handleChange, state, darkMode}) {
     const [path,setPath] = useState([]);
 
     useEffect(()=>{
-        let pathArray = window.location.pathname.split('/');
+        let pathArray = window.location.hash.split('/');
         setPath(pathArray)
-        console.log(pathArray[1])
-    },[window.location.pathname])
+        // console.log("PAth",pathArray[1])
+    },[window.location.hash])
 
     const IOSSwitch = withStyles((theme) => ({
         root: {
@@ -151,9 +151,7 @@ function Navbar({handleChange, state, darkMode}) {
                                 </Grid>
                                 <Tooltip title={"Facebook"} aria-label={"facebook"}>
                                     <Grid item>
-
                                         <Facebook/>
-
                                     </Grid>
                                 </Tooltip>
                                 {/*<Grid item>

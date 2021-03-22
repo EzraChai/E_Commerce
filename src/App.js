@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {HashRouter as Router, Switch, Route} from "react-router-dom";
 // import Products from "./components/Products";
 // import Navbar from "./components/NavBar/Navbar";
 
@@ -182,13 +182,13 @@ function App() {
                             </Route>
 
                         {notNullObject.map((category,index)=>(
-                            <Route exact path={`/category/${index + 1}`}>
+                            <Route path={`/category/${index + 1}`}>
                                 <Category darkMode={darkMode} indexValue={index} categories={notNullObject}/>
                             </Route>
                         ))}
 
                         {products.map((product) => (
-                            <Route exact path={`/product/${product.permalink}`}>
+                            <Route path={`/product/${product.permalink}`}>
                                 <ProductInfo darkMode={darkMode} product={product} />
                             </Route>
                         ))}
