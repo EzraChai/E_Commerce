@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Grid, Typography, CssBaseline, Fab, Divider, CircularProgress} from '@material-ui/core';
+import {Grid, Typography, Divider, CircularProgress} from '@material-ui/core';
 
 import Product from "./Product/Product";
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 import makeStyles from "./styles";
-import {Link} from "react-router-dom"
 
 
 /*
@@ -26,9 +24,6 @@ const Products = ({products, darkMode}) => {
 
         <main className={classes.content}>
             <>
-                <Fab size={"medium"} className={classes.button} onClick={()=>window.history.back()}>
-                    <KeyboardBackspaceIcon />
-                </Fab>
                 <main className={classes.content}>
                     <Typography className={classes.title} variant={"h3"}>Our Products</Typography>
                     <Divider/>
@@ -75,4 +70,4 @@ const Products = ({products, darkMode}) => {
     )
 }
 
-export default Products;
+export default React.memo(Products);

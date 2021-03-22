@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {
-    Typography,
-    Paper,
+    Backdrop,
+    Box,
+    Button,
+    Card,
+    CardContent,
     Container,
     Grid,
-    Button,
-    Spacing,
-    Box,
-    Fab, IconButton, Tooltip, Backdrop, CardContent, Card,
+    IconButton,
+    Paper,
+    Tooltip,
+    Typography,
 } from "@material-ui/core";
 import useStyles from "./styles";
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import Zoom from 'react-img-zoom';
 import QRCode from 'qrcode.react';
@@ -23,10 +25,12 @@ const ProductInfo = ({product, darkMode}) => {
     const [secondPicture, setSecondPicture] = useState()
     const [thirdPicture, setThirdPicture] = useState()
     const [fourthPicture, setfourthPicture] = useState()
+    const [fifthPicture,setFifthPicture] = useState()
     const [isAPhone, setIsAPhone] = useState(false)
     const [firstPictureClicked, setFirstPictureClicked] = useState(false)
     const [secondPictureClicked, setSecondPictureClicked] = useState(false)
     const [thirdPictureClicked, setThirdPictureClicked] = useState(false)
+    const [fourthPictureClicked,setFourthPictureClicked] = useState(false)
 
     const handleClose = () => {
         setOpen(false);
@@ -64,16 +68,18 @@ const ProductInfo = ({product, darkMode}) => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            setIsAPhone(true)
+        }
         if (product.assets[2]) {
             setSecondPicture(product.assets[1].url)
             setThirdPicture(product.assets[2].url)
         }
-        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            setIsAPhone(true)
-        }
         if (product.assets[3]) {
             setfourthPicture(product.assets[3].url)
-            console.log(product.assets[3])
+        }
+        if (product.assets[4]) {
+            setFifthPicture(product.assets[4].url)
         }
     }, [])
 
@@ -135,8 +141,56 @@ const ProductInfo = ({product, darkMode}) => {
         }
     }
 
+    const changeImage4 = () => {
+        setFourthPictureClicked(!fourthPictureClicked)
+        changeFunction4()
+    }
+
+    const changeFunction4 = () => {
+        if (!fourthPictureClicked) {
+            setCurrentPicture(fourthPictureClicked ? currentPicture : fifthPicture)
+            setFifthPicture(fourthPictureClicked ? fifthPicture : currentPicture)
+        } else {
+            setCurrentPicture(fourthPictureClicked ? fifthPicture : currentPicture)
+            setFifthPicture(fourthPictureClicked ? currentPicture : fifthPicture)
+        }
+    }
+
     const SmallImageComponent = () => {
-        if (product.assets[3]) {
+        if (product.assets[4]) {
+            return (
+                <div>
+                    <CardContent>
+                        <Grid container justify={"center"} spacing={2}>
+                            <Grid item xs={4} lg={3} style={{paddingTop: "16px"}}>
+                                {isAPhone ? <img className={classes.smallPic} onClick={() => changeImage1()}
+                                                 src={secondPicture} alt={secondPicture}/> :
+                                    <img className={classes.smallPic} onMouseEnter={() => changeImage1()}
+                                         src={secondPicture} alt={secondPicture}/>}
+                            </Grid>
+                            <Grid item xs={4} lg={3} style={{paddingTop: "16px"}}>
+                                {isAPhone ? <img className={classes.smallPic} onClick={() => changeImage2()}
+                                                 src={thirdPicture} alt={thirdPicture}/> :
+                                    <img className={classes.smallPic} onMouseEnter={() => changeImage2()}
+                                         src={thirdPicture} alt={thirdPicture}/>}
+                            </Grid>
+                            <Grid item xs={4} lg={3} style={{paddingTop: "16px"}}>
+                                {isAPhone ? <img className={classes.smallPic} onClick={() => changeImage3()}
+                                                 src={fourthPicture} alt={fourthPicture}/> :
+                                    <img className={classes.smallPic} onMouseEnter={() => changeImage3()}
+                                         src={fourthPicture} alt={fourthPicture}/>}
+                            </Grid>
+                            <Grid item xs={4} lg={3} style={{paddingTop: "16px"}}>
+                                {isAPhone ? <img className={classes.smallPic} onClick={() => changeImage4()}
+                                                 src={fifthPicture} alt={fifthPicture}/> :
+                                    <img className={classes.smallPic} onMouseEnter={() => changeImage4()}
+                                         src={fifthPicture} alt={fifthPicture}/>}
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </div>
+            )
+        } else if (product.assets[3]) {
             return (
                 <div>
                     <CardContent>
@@ -163,7 +217,7 @@ const ProductInfo = ({product, darkMode}) => {
                     </CardContent>
                 </div>
             )
-        } else if (product.assets[2]) {
+        } else if(product.assets[2]) {
             return (
                 <div>
                     <Grid container justify={"center"} spacing={2}>
@@ -182,13 +236,14 @@ const ProductInfo = ({product, darkMode}) => {
                     </Grid>
                 </div>
             )
-        } else {
-            return (<></>)
+        }else{
+            return <></>
         }
     }
 
+
     const ImageComponent = () => {
-        if (setIsAPhone()) {
+        if (isAPhone) {
             return (
                 <>
                     <img width={"100%"} style={{borderRadius: "2px"}} src={currentPicture}
@@ -197,7 +252,7 @@ const ProductInfo = ({product, darkMode}) => {
             )
         } else {
             return (
-                <div className={classes.zoom} style={{borderRadius: "2px",cursor:"zoom-in"}}>
+                <div className={classes.zoom} style={{borderRadius: "2px", cursor: "zoom-in"}}>
                     <Zoom
                         img={currentPicture}
                         zoomScale={3}
@@ -212,14 +267,9 @@ const ProductInfo = ({product, darkMode}) => {
 
     return (
         <>
-            <Fab size="medium" style={{margin: "0 2%", position: "fixed", padding: "15px 10px", borderRadius: "15%",zIndex:"4"}}
-                 onClick={() => window.history.back()}>
-                <KeyboardBackspaceIcon/>
-            </Fab>
-
-            <Container style={{marginTop: "10vh"}}>
+            <Container>
                 <div className="classes.toolbar"/>
-                <Paper className={"classes.paper"} elevation={3}>
+                <Paper style={{marginTop: "10vh"}} className={"classes.paper"} elevation={3}>
                     <Box p={3}>
 
                         <Grid container spacing={4}>
@@ -235,7 +285,10 @@ const ProductInfo = ({product, darkMode}) => {
                                                 gutterBottom>{product.name}
                                     </Typography>
                                     <Typography variant={"h5"}
-                                                style={{float: "right",paddingRight:"10px"}}>{product.price.formatted_with_symbol}</Typography>
+                                                style={{
+                                                    float: "right",
+                                                    paddingRight: "10px"
+                                                }}>{product.price.formatted_with_symbol}</Typography>
                                     <br/>
                                     <br/>
                                     <br/>
@@ -256,11 +309,17 @@ const ProductInfo = ({product, darkMode}) => {
                                                     <Grid item>
                                                         <Grid container justify={"center"} alignItems={"center"}>
                                                             <Typography style={{padding: "8px", marginBottom: "5px"}}>Buy
-                                                                now at <span><img style={{width:"20px",height:"20px",marginTop:"5px"}} src="https://i.ibb.co/1Rv8jVP/shopee-bag-logo-free-transparent-icon-17.png" alt="Shopee"/></span> <span
+                                                                now at <span><img style={{
+                                                                    width: "20px",
+                                                                    height: "20px",
+                                                                    marginTop: "5px"
+                                                                }}
+                                                                                  src="https://i.ibb.co/1Rv8jVP/shopee-bag-logo-free-transparent-icon-17.png"
+                                                                                  alt="Shopee"/></span> <span
                                                                     style={{color: "#f53e2d"}}>Shopee</span></Typography>
-                                                            <ArrowRightAltIcon style={{marginTop:"0px"}}/>
+                                                            <ArrowRightAltIcon style={{marginTop: "0px"}}/>
                                                         </Grid>
-                                                        </Grid>
+                                                    </Grid>
 
                                                 </Grid>
                                             </Button>
@@ -311,4 +370,4 @@ const ProductInfo = ({product, darkMode}) => {
     );
 };
 
-export default ProductInfo;
+export default React.memo(ProductInfo);

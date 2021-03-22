@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     subtitle: {
         fontWeight:300,
         textAlign: "center",
-        ["@media (max-width:800px)"]: {
+        "@media (max-width:800px)": {
             textSize:"16px",
         }
     },
@@ -30,13 +30,13 @@ const useStyles = makeStyles((theme) => ({
     cardContent: {
         display: "flex",
         justifyContent: "space-between",
-        ["@media (max-width:800px)"]: {
+        "@media (max-width:800px)": {
             display:"block",
         }
     },
     media:{
         height:"400px",
-        ["@media (max-width:800px)"]: {
+        "@media (max-width:800px)": {
             height:"300px",
         },
         backgroundSize: "cover",

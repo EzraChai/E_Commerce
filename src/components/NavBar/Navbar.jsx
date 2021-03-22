@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     AppBar,
     Toolbar,
@@ -8,10 +8,11 @@ import {
     FormControlLabel,
     Switch,
     Tooltip,
-    withStyles, Grid,
+    withStyles, Grid, Fab,
 } from "@material-ui/core";
 import {Link, useLocation} from "react-router-dom"
 import FacebookIcon from '@material-ui/icons/Facebook';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import Brightness2RoundedIcon from '@material-ui/icons/Brightness2Rounded';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import useStyles from './styles';
@@ -20,7 +21,13 @@ import useStyles from './styles';
 function Navbar({handleChange, state, darkMode}) {
     const classes = useStyles();
     const location = useLocation();
+    const [path,setPath] = useState([]);
 
+    useEffect(()=>{
+        let pathArray = window.location.pathname.split('/');
+        setPath(pathArray)
+        console.log(pathArray[1])
+    },[window.location.pathname])
 
     const IOSSwitch = withStyles((theme) => ({
         root: {
@@ -162,8 +169,31 @@ function Navbar({handleChange, state, darkMode}) {
 
                 </Toolbar>
             </AppBar>
+
+            {location.pathname !== "/" && path[1] !== "category" && path[1] !== "product" &&
+            <Fab size="medium"
+                 className={classes.goBackButton}
+                 onClick={() => window.history.back()}>
+                <KeyboardBackspaceIcon/>
+            </Fab>
+            }
+            {path[1] === "category" &&
+            <Fab size="medium"
+                 className={classes.goBackButton}
+                 onClick={() => window.location.replace("/")}>
+                <KeyboardBackspaceIcon/>
+            </Fab>
+            }
+            {path[1] === "product" &&
+            <Fab size="medium"
+                 className={classes.goBackButton}
+                 style={{marginTop:"0"}}
+                 onClick={() => window.history.back()}>
+                <KeyboardBackspaceIcon/>
+            </Fab>
+            }
         </div>
     );
 }
 
-export default Navbar;
+export default React.memo(Navbar);

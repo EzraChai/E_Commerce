@@ -13,16 +13,16 @@ export default makeStyles((theme) => ({
         position:"fixed",
         padding:"15px 10px",
         borderRadius:"15%",
-        ["@media (max-width:1410px)"]:{
+        "@media (max-width:1410px)":{
             margin:"7% 2%",
         },
-        ["@media (max-width:1200px)"]:{
+        "@media (max-width:1200px)":{
             margin:"10% 2%",
         },
-        ["@media (max-width:800px)"]:{
+        "@media (max-width:800px)":{
             margin:"12% 2%",
         },
-        ["@media (max-width:450px)"]:{
+        "@media (max-width:450px)":{
             margin:"18% 2%",
         },
     },
@@ -32,7 +32,7 @@ export default makeStyles((theme) => ({
         padding:"15px 10px",
         borderRadius:"15%",
         zIndex:"1",
-        ["@media (max-width:1410px)"]:{
+        "@media (max-width:1410px)":{
             margin:"68px 12px",
         }
     },
@@ -42,7 +42,7 @@ export default makeStyles((theme) => ({
         fontWeight:300,
         fontFamily: "'Nunito', sans-serif",
         marginTop: "80px",
-        ["@media (max-width:800px)"]:{
+        "@media (max-width:800px)":{
             fontSize:"30px",
             padding:"10px 0",
             marginTop: "70px",

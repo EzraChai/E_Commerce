@@ -25,12 +25,12 @@ const MainContent = ({latestProduct,darkMode}) => {
     const useStyles = makeStyles((theme) => ({
         root:{
             paddingTop:"900px",
-            ["@media (max-width:800px)"]:{
+            "@media (max-width:800px)":{
                 paddingTop:"250px",
             }
         },
         Learn:{
-            ["@media (max-width:800px)"]:{
+            "@media (max-width:800px)":{
                 marginLeft:"25px",
             }
         },
@@ -63,7 +63,7 @@ const MainContent = ({latestProduct,darkMode}) => {
         media:{
             height: '0',
             paddingTop:"470px",
-            ["@media (max-width:800px)"]:{
+            "@media (max-width:800px)":{
                 paddingTop:"300px",
             },
             width:"40",
@@ -84,7 +84,7 @@ const MainContent = ({latestProduct,darkMode}) => {
         <>
             <CssBaseline/>
             <div className={classes.root}>
-                <Paper className={"mainPoint"} style={{transition: "0.6s"}} variant={"elevation"}>
+                <Paper className={"mainPoint"} id={"section1"} style={{transition: "0.6s"}} variant={"elevation"}>
                     <div className={classes.space}/>
                     <div className={classes.space}/>
                     <Typography className={classes.text} style={{fontSize:"30px"}}  variant={"h6"}>OUR PRODUCTS</Typography>
@@ -192,4 +192,4 @@ const MainContent = ({latestProduct,darkMode}) => {
     );
 };
 
-export default MainContent;
+export default React.memo(MainContent);

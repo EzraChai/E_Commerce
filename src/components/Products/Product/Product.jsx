@@ -83,4 +83,4 @@ const Product = ({product,darkMode}) => {
     );
 }
 
-export default Product;
+export default React.memo(Product);

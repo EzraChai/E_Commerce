@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
     },
     title: {
         fontSize: 34,
-        ["@media (max-width:800px)"]: {
+        "@media (max-width:800px)": {
             fontSize: 30,
         },
         fontWeight: '400',
@@ -24,7 +24,7 @@ export default makeStyles((theme) => ({
     cardContent: {
         display: "flex",
         justifyContent: "space-between",
-        ["@media (max-width:800px)"]: {
+        "@media (max-width:800px)": {
             display:"block",
         }
     },
@@ -44,14 +44,14 @@ export default makeStyles((theme) => ({
     },
     space:{
         padding:"0 60px",
-        ["@media (max-width:800px)"]:{
+        "@media (max-width:800px)":{
             padding:"0 5px",
         }
     },
     smallPic:{
         width: "108px",
         height: "108px",
-        ["@media (max-width:800px)"]: {
+        "@media (max-width:800px)": {
             width: "72px", height: "72px"
         }
     }

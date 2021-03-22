@@ -3,6 +3,7 @@ import {Collapse, IconButton, Typography} from "@material-ui/core";
 import {makeStyles, CssBaseline} from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MainContent from "./Content"
+import {Link, animateScroll as scroll} from "react-scroll";
 
 
 const MyComponent = ({latestProduct, categories, darkMode}) => {
@@ -13,17 +14,17 @@ const MyComponent = ({latestProduct, categories, darkMode}) => {
             backgroundImage: darkMode ? "url('https://i.ibb.co/4gt4p0S/alexander-andrews-v-GCEr-Dhrc3-E-unsplash-1.webp')" : "url('https://i.ibb.co/34kySSK/andrej-lisakov-Yy4s-N6-Qzbo-U-unsplash.webp')",
             backgroundRepeat: 'no-repeat',
             backgroundSize: darkMode ? "cover" : "cover",
-            backgroundPosition:darkMode ? "50% 60%" : "50% 31%",
-            backgroundAttachment:"fixed",
+            backgroundPosition: darkMode ? "50% 60%" : "50% 31%",
+            backgroundAttachment: "fixed",
             transition: "0.6s",
-            ["@media (max-width:1360px)"]:{
+            "@media (max-width:1360px)": {
                 backgroundSize: darkMode ? "cover" : "cover",
-                backgroundPosition:"center",
+                backgroundPosition: "center",
             },
-            ["@media (max-width:450px)"]: {
+            "@media (max-width:450px)": {
                 backgroundImage: darkMode ? "url('https://images.unsplash.com/photo-1490814525860-594e82bfd34a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1026&q=80')" : "url('https://images.unsplash.com/photo-1603400521630-9f2de124b33b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')",
-                backgroundPosition:"center",
-               /* backgroundSize: darkMode ? "210% 20%" : "140% 20%",*/
+                backgroundPosition: "center",
+                /* backgroundSize: darkMode ? "210% 20%" : "140% 20%",*/
                 backgroundSize: darkMode ? "cover" : "cover",
             },
 
@@ -34,7 +35,7 @@ const MyComponent = ({latestProduct, categories, darkMode}) => {
             justifyContent: "center",
             height: "450px",
             alignItems: "flex-end",
-            ["@media (max-width:800px)"]: {
+            "@media (max-width:800px)": {
                 height: "395px",
             }
         },
@@ -43,18 +44,18 @@ const MyComponent = ({latestProduct, categories, darkMode}) => {
             fontFamily: "'Nunito', sans-serif",
             textAlign: "center",
             transition: "0.6s",
-            ["@media (max-width:800px)"]: {
+            "@media (max-width:800px)": {
                 fontSize: "64px",
             }
         },
         goDown: {
             border: "2px solid black",
-            borderRadius:"20px",
+            borderRadius: "20px",
             textAlign: "center",
         },
         goDownWhite: {
             border: "2px solid white",
-            borderRadius:"20px",
+            borderRadius: "20px",
             textAlign: "center",
         },
         buttonPress: {
@@ -70,13 +71,6 @@ const MyComponent = ({latestProduct, categories, darkMode}) => {
     })
     const classes = useStyles();
 
-    const handleClick = () => {
-        document.querySelector('.mainPoint').scrollIntoView({
-            behavior: 'smooth'
-        });
-    }
-
-
     return (
         <>
             <CssBaseline/>
@@ -85,28 +79,24 @@ const MyComponent = ({latestProduct, categories, darkMode}) => {
                     <div className={classes.title}>
                         <Typography className={classes.heading} variant={"h1"}>TY studio.</Typography>
                     </div>
+
                     <div className={classes.buttonPress}>
-                        <IconButton onClick={() => (handleClick())}>
-                            {!darkMode?(<ExpandMoreIcon fontSize={"large"} className={classes.goDown}/>):
-                                (<ExpandMoreIcon fontSize={"large"} className={classes.goDownWhite}/>)}
-                        </IconButton>
+                        <Link to="section1" smooth={true}>
+                            <IconButton>
+                                {!darkMode ? (<ExpandMoreIcon fontSize={"large"} className={classes.goDown}/>) :
+                                    (<ExpandMoreIcon fontSize={"large"} className={classes.goDownWhite}/>)}
+                            </IconButton>
+                        </Link>
+
                     </div>
+
                 </Collapse>
                 <MainContent darkMode={darkMode} categories={categories} latestProduct={latestProduct}/>
-                {/*{categories.map((category )=>(
-                <ul>
-                    <li>
-                        <Link to={`/category/${category.slug}`}>
-                            <h3>{category.name}</h3>
-                        </Link>
-                    </li>
-                </ul>
-            ))}*/}
             </div>
         </>
 
     );
 };
 
-export default MyComponent;
+export default React.memo(MyComponent);
 

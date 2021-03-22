@@ -7,8 +7,6 @@ import {commerce} from "./lib/commerce";
 import {Products, Navbar, Category, Footer, ProductInfo, MainPage} from "./components"
 import {Snackbar, ThemeProvider, createMuiTheme} from "@material-ui/core";
 import MuiAlert from '@material-ui/lab/Alert';
-// eslint-disable-next-line no-unused-vars
-import {Alert} from "@material-ui/lab";
 
 
 function App() {
@@ -16,7 +14,6 @@ function App() {
     /*const [cart, setCart] = useState({});
     const [order, setOrder] = useState({});
     const [errorMessage, setErrorMessage] = useState("")*/
-    const [categories, setCategories] = useState([])
     const [open, setOpen] = useState(false);
     const [notNullObject,setNotNullObject] = useState([])
     const [latestProduct,setLatestProduct] = useState([])
@@ -124,7 +121,6 @@ function App() {
         const {data} = await commerce.products.list();
         data.reverse()
         data.splice(4,data.length-4);
-        console.log("DAta",data)
         setLatestProduct(data);
     }
 
@@ -158,7 +154,7 @@ function App() {
         <>
             <ThemeProvider theme={theme}>
                 <Router>
-                    <Navbar handleChange={handleChange} darkMode={darkMode} state={state} categories={categories}/>
+                    <Navbar handleChange={handleChange} darkMode={darkMode} state={state} />
                     <Switch>
                         <Route exact path="/">
                             <MainPage darkMode={darkMode} latestProduct={latestProduct} categories={notNullObject}/>

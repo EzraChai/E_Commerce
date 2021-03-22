@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
-import { Typography, Fab } from "@material-ui/core";
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import { Typography } from "@material-ui/core";
 import makeStyles from "../../styles";
 import Tab from "./Tab"
 
@@ -12,22 +11,10 @@ const Category = ({categories,darkMode,indexValue}) => {
         window.scrollTo(0,0)
     ),[])
 
-    const handleBack = () =>{
-        window.location.href = "/"
-        /*if (window.history.back() === `%PUBLIC_URL%/category/${indexValue}`){
-            window.history.go()
-        }else{
-            window.history.back()
-        }*/
-    }
-
 /*    console.log("Products", products)*/
     // console.log("Category", category)
     return (
         <>
-        <Fab size={"medium"} className={classes.button} onClick={()=>handleBack()}>
-            <KeyboardBackspaceIcon />
-        </Fab>
             <main className={classes.content}>
                 <Typography className={classes.title} variant={"h3"}>Category</Typography>
 

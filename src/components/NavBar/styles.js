@@ -73,5 +73,27 @@ export default makeStyles((theme) => ({
             width: '20ch',
         },
     },
+    goBackButton:{
+        margin: "5% 4%",
+        position: "fixed",
+        padding: "15px 10px",
+        borderRadius: "15%",
+        zIndex: "4",
+        "@media (max-width:1200px)":{
+            margin: "10% 4%",
+        },
+        "@media (max-width:800px)":{
+            margin: "12% 4%",
+        },
+        "@media (max-width:600px)":{
+            margin: "15% 4%",
+        },
+        "@media (max-width:450px)":{
+            margin: "20% 4%",
+        },
+
+
+
+    }
 }));
 
