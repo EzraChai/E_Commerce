@@ -104,8 +104,8 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
                 <Tabs
                     value={value}
                     onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
+                    indicatorColor="secondary"
+                    textColor="secondary"
                     variant="scrollable"
                     scrollButtons="auto"
                     aria-label="scrollable auto tabs example"
@@ -133,7 +133,7 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
                         <>
                             <br/><br/><br/><br/>
                             <div className={classes.circular} >
-                                <CircularProgress size={68} color={"primary"}/>
+                                <CircularProgress size={68} color={"secondary"}/>
                                 <br/><br/><br/><br/><br/><br/><br/><br/><br/>
                                 <br/><br/><br/><br/><br/>
                             </div>

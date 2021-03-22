@@ -37,7 +37,7 @@ const Products = ({products, darkMode}) => {
                     <Grid container justify="center" spacing={6}>
                         {!done?(
                             <div style={{marginTop:"5%"}}>
-                                <CircularProgress color={"primary"}/>
+                                <CircularProgress color={"secondary"}/>
                             </div>
                         ):(
                             <>

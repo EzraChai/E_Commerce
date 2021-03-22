@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
     },
     media: {
         height: '0',
-        paddingTop: '56.25%'
+        paddingTop: '90%'
     },
     title: {
         fontSize: 34,

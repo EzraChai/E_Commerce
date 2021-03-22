@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Collapse, IconButton, Typography} from "@material-ui/core";
 import {makeStyles, CssBaseline} from "@material-ui/core";
-import {Link} from "react-router-dom";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MainContent from "./Content"
 
@@ -10,7 +9,6 @@ const MyComponent = ({latestProduct, categories, darkMode}) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
-            scrollBehavior: "smooth",
             minHeight: "100vh",
             backgroundImage: darkMode ? "url('https://i.ibb.co/4gt4p0S/alexander-andrews-v-GCEr-Dhrc3-E-unsplash-1.webp')" : "url('https://i.ibb.co/34kySSK/andrej-lisakov-Yy4s-N6-Qzbo-U-unsplash.webp')",
             backgroundRepeat: 'no-repeat',

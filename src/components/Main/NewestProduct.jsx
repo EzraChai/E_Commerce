@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         height: '30px'
     },
     subtitle: {
-        fontWeight: 300,
+        fontWeight:300,
         textAlign: "center",
         ["@media (max-width:800px)"]: {
             textSize:"16px",
@@ -52,7 +52,7 @@ const LatestProduct = ({product,darkMode}) => {
                     <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
                     <CardContent style={{backgroundColor:darkMode?"#3b3b3b":"white"}}>
                         <div  className={classes.cardContent}>
-                            <Typography style={{textAlign:"center",fontFamily:"'Nunito', sans-serif",}} variant="h5" gutterBottom>
+                            <Typography style={{textAlign:"center",fontFamily:"'Nunito', sans-serif",fontWeight:500,}} variant="h5" gutterBottom>
                                 {product.name}
                             </Typography>
                         </div>

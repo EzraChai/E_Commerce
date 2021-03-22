@@ -47,7 +47,7 @@ const MainContent = ({latestProduct,darkMode}) => {
         Facebook:{
             padding:"20px 20px",
             fontFamily: "'Nunito', sans-serif",
-            fontWeight:400,
+            fontWeight:300,
         },
         CardText:{
             fontFamily: "'Nunito', sans-serif",
@@ -56,9 +56,6 @@ const MainContent = ({latestProduct,darkMode}) => {
         grid:{
             display:"flex",
             justifyContent:"center",
-        },
-        buttonForProducts:{
-
         },
         space:{
             height:'30px'
@@ -176,7 +173,7 @@ const MainContent = ({latestProduct,darkMode}) => {
                                 <Typography className={classes.Facebook} variant={"h4"}>Like us now on <span><FacebookIcon style={{fontSize:"90%"}}/> </span> Facebook <br/> for more updates </Typography>
                                 <Button variant={"outlined"} onClick={()=>window.open('https://www.facebook.com/NagaworldINT', '_blank')} style={{marginLeft:"20px",padding:"10px 15px"}}>
                                     <Typography variant={"body1"}>Learn More</Typography>
-                                    <ArrowRightAltIcon />
+                                    <ArrowRightAltIcon style={{marginLeft: "5px",paddingBottom:"3px"}}/>
                                 </Button>
                             </Grid>
                         </Grid>

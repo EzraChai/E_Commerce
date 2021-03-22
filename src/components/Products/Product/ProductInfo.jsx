@@ -188,17 +188,16 @@ const ProductInfo = ({product, darkMode}) => {
     }
 
     const ImageComponent = () => {
-        if (setIsAPhone) {
-            // some code..
+        if (setIsAPhone()) {
             return (
                 <>
-                    <img width={"100%"} style={{borderRadius: "2px", cursor: "zoom-in"}} src={currentPicture}
+                    <img width={"100%"} style={{borderRadius: "2px"}} src={currentPicture}
                          alt={product.name}/>
                 </>
             )
         } else {
             return (
-                <div style={{borderRadius: "2px"}}>
+                <div className={classes.zoom} style={{borderRadius: "2px",cursor:"zoom-in"}}>
                     <Zoom
                         img={currentPicture}
                         zoomScale={3}
@@ -213,7 +212,7 @@ const ProductInfo = ({product, darkMode}) => {
 
     return (
         <>
-            <Fab size="medium" style={{margin: "0 2%", position: "fixed", padding: "15px 10px", borderRadius: "15%"}}
+            <Fab size="medium" style={{margin: "0 2%", position: "fixed", padding: "15px 10px", borderRadius: "15%",zIndex:"4"}}
                  onClick={() => window.history.back()}>
                 <KeyboardBackspaceIcon/>
             </Fab>
@@ -236,7 +235,7 @@ const ProductInfo = ({product, darkMode}) => {
                                                 gutterBottom>{product.name}
                                     </Typography>
                                     <Typography variant={"h5"}
-                                                style={{float: "right"}}>{product.price.formatted_with_symbol}</Typography>
+                                                style={{float: "right",paddingRight:"10px"}}>{product.price.formatted_with_symbol}</Typography>
                                     <br/>
                                     <br/>
                                     <br/>
@@ -255,13 +254,14 @@ const ProductInfo = ({product, darkMode}) => {
                                             }}>
                                                 <Grid container alignItems={"center"}>
                                                     <Grid item>
-                                                        <Typography style={{padding: "8px", marginBottom: "5px"}}>Buy
-                                                            now at <span
-                                                                style={{color: "#f53e2d"}}>Shopee</span></Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <ArrowRightAltIcon/>
-                                                    </Grid>
+                                                        <Grid container justify={"center"} alignItems={"center"}>
+                                                            <Typography style={{padding: "8px", marginBottom: "5px"}}>Buy
+                                                                now at <span><img style={{width:"20px",height:"20px",marginTop:"5px"}} src="https://i.ibb.co/1Rv8jVP/shopee-bag-logo-free-transparent-icon-17.png" alt="Shopee"/></span> <span
+                                                                    style={{color: "#f53e2d"}}>Shopee</span></Typography>
+                                                            <ArrowRightAltIcon style={{marginTop:"0px"}}/>
+                                                        </Grid>
+                                                        </Grid>
+
                                                 </Grid>
                                             </Button>
                                         </Grid>

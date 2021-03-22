@@ -5,10 +5,10 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import {commerce} from "./lib/commerce";
 import {Products, Navbar, Category, Footer, ProductInfo, MainPage} from "./components"
-import {Snackbar, ThemeProvider, createMuiTheme, Typography} from "@material-ui/core";
+import {Snackbar, ThemeProvider, createMuiTheme} from "@material-ui/core";
 import MuiAlert from '@material-ui/lab/Alert';
+// eslint-disable-next-line no-unused-vars
 import {Alert} from "@material-ui/lab";
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
 
 
 function App() {
@@ -201,7 +201,7 @@ function App() {
                     <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="success">
                             {darkMode ? "Dark Mode Enabled" : (
-                                <Typography variant={"h6"}> Light Mode Enabled <WbSunnyIcon/> </Typography>)}
+                                "Light Mode Enabled")}
                         </Alert>
                     </Snackbar>
                     <Footer/>
