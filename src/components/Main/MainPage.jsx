@@ -48,8 +48,14 @@ const MyComponent = ({latestProduct, categories, darkMode}) => {
             }
         },
         goDown: {
+            border: "2px solid black",
+            borderRadius:"20px",
             textAlign: "center",
-
+        },
+        goDownWhite: {
+            border: "2px solid white",
+            borderRadius:"20px",
+            textAlign: "center",
         },
         buttonPress: {
             display: "flex",
@@ -81,7 +87,8 @@ const MyComponent = ({latestProduct, categories, darkMode}) => {
                     </div>
                     <div className={classes.buttonPress}>
                         <IconButton onClick={() => (handleClick())}>
-                            <ExpandMoreIcon fontSize={"large"} className={classes.goDown}/>
+                            {!darkMode?(<ExpandMoreIcon fontSize={"large"} className={classes.goDown}/>):
+                                (<ExpandMoreIcon fontSize={"large"} className={classes.goDownWhite}/>)}
                         </IconButton>
                     </div>
                 </Collapse>
