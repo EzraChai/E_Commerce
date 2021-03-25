@@ -18,7 +18,7 @@ export default makeStyles((theme) => ({
         fontWeight:"600",
         textDecoration: 'none',
         fontFamily: "'Nunito', sans-serif",
-        ["@media (max-width:800px)"]: {
+        "@media (max-width:800px)": {
             fontWeight:"400",
             fontSize:"16px",
         }

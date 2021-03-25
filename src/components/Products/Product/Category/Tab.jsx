@@ -10,7 +10,6 @@ import {commerce} from "../../../../lib/commerce";
 import {CircularProgress, Grid} from "@material-ui/core";
 import {Link} from "react-router-dom"
 import Product from "../Product";
-import * as path from "path";
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -53,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     },
     circular:{
         marginTop: "8%",
-        ["@media (max-width:800px)"]:{
+        "@media (max-width:800px)":{
             marginTop:"15%",
         }
     }
@@ -70,7 +69,7 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
 
     useEffect(() => {
         fetchProducts()
-        return(lastFuc())
+        return setDone(false)
     }, [value])
 
     /*const fetchProducts = async () => {
@@ -83,11 +82,11 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
         }
     }*/
 
-    const lastFuc = () =>{
+   /* const lastFuc = () =>{
         setDone(false)
         // localStorage.setItem("OldProduct",JSON.stringify(products))
     }
-
+*/
     const fetchProducts = async()=>{
         // let oldProducts = JSON.parse(localStorage.getItem("OldProduct"))
         // console.log(oldProducts)
@@ -109,7 +108,6 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
     //     setProducts(data);
     // }
 
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -124,15 +122,13 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
                     textColor="secondary"
                     variant="scrollable"
                     scrollButtons="auto"
-                    aria-label="scrollable auto tabs example"
-                >
+                    aria-label="scrollable auto tabs example">
                     {categories.map((category, index) => {
                         // setLinkCategoryWithIndex(valueBefore=>[...valueBefore,{category,index}])
                         return(
                             <Tab component={Link} to={`/category/${index + 1}`} key={index} label={category.name} {...a11yProps(index)} />
                         )
                     })}
-
 
                     {/*  <Tab label="Item Two" {...a11yProps(1)} />
                     <Tab label="Item Three" {...a11yProps(2)} />
@@ -154,7 +150,6 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
                                 <br/><br/><br/><br/><br/>
                             </div>
                         </>
-
                     ) : (
                         <>
                             {products.map((product) => (
@@ -163,11 +158,8 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
                                 </Grid>
                             ))}
                         </>
-
                     )}
-
                 </Grid>
-
             </TabPanel>
         </div>
     );

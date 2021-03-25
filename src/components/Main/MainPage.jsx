@@ -3,7 +3,7 @@ import {Collapse, IconButton, Typography} from "@material-ui/core";
 import {makeStyles, CssBaseline} from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MainContent from "./Content"
-import {Link, animateScroll as scroll} from "react-scroll";
+import {Link} from "react-scroll";
 
 
 const MyComponent = ({latestProduct, categories, darkMode}) => {

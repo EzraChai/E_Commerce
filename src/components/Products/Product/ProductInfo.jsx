@@ -1,17 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-    Backdrop,
-    Box,
-    Button,
-    Card,
-    CardContent,
-    Container,
-    Grid,
-    IconButton,
-    Paper,
-    Tooltip,
-    Typography,
-} from "@material-ui/core";
+import {Backdrop, Box, Button, Card, CardContent, Container, Grid, IconButton, Paper, Tooltip, Typography,} from "@material-ui/core";
 import useStyles from "./styles";
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import Zoom from 'react-img-zoom';
@@ -24,7 +12,7 @@ const ProductInfo = ({product, darkMode}) => {
     const [currentPicture, setCurrentPicture] = useState(product.media.source)
     const [secondPicture, setSecondPicture] = useState()
     const [thirdPicture, setThirdPicture] = useState()
-    const [fourthPicture, setfourthPicture] = useState()
+    const [fourthPicture, setFourthPicture] = useState()
     const [fifthPicture, setFifthPicture] = useState()
     const [isAPhone, setIsAPhone] = useState(false)
     const [firstPictureClicked, setFirstPictureClicked] = useState(false)
@@ -67,7 +55,7 @@ const ProductInfo = ({product, darkMode}) => {
             setThirdPicture(product.assets[2].url)
         }
         if (product.assets[3]) {
-            setfourthPicture(product.assets[3].url)
+            setFourthPicture(product.assets[3].url)
         }
         if (product.assets[4]) {
             setFifthPicture(product.assets[4].url)
@@ -125,10 +113,10 @@ const ProductInfo = ({product, darkMode}) => {
     const changeFunction3 = () => {
         if (!thirdPictureClicked) {
             setCurrentPicture(thirdPictureClicked ? currentPicture : fourthPicture)
-            setfourthPicture(thirdPictureClicked ? fourthPicture : currentPicture)
+            setFourthPicture(thirdPictureClicked ? fourthPicture : currentPicture)
         } else {
             setCurrentPicture(thirdPictureClicked ? fourthPicture : currentPicture)
-            setfourthPicture(thirdPictureClicked ? currentPicture : fourthPicture)
+            setFourthPicture(thirdPictureClicked ? currentPicture : fourthPicture)
         }
     }
 
@@ -258,18 +246,13 @@ const ProductInfo = ({product, darkMode}) => {
                   style={{margin: "30px 2px"}}>
                 <Grid item style={{paddingRight: "10px"}}>
                     <Qrcode/>
-                    <Button variant={"outlined"} style={{paddingRight: "17px"}} onClick={() => {
-                        shopeeClicked()
-                    }}>
+                    <Button variant={"outlined"} style={{paddingRight: "17px"}} onClick={() => {shopeeClicked()}}>
                         <Grid container alignItems={"center"}>
                             <Grid item>
                                 <Grid container justify={"center"} alignItems={"center"}>
                                     <Typography style={{padding: "8px", marginBottom: "5px"}}>Buy
-                                        now at <span><img style={{
-                                            width: "20px",
-                                            height: "20px",
-                                            marginTop: "5px"
-                                        }}
+                                        now at <span>
+                                            <img style={{width: "20px", height: "20px", marginTop: "5px"}}
                                                           src="https://i.ibb.co/1Rv8jVP/shopee-bag-logo-free-transparent-icon-17.png"
                                                           alt="Shopee"/></span><span
                                             style={{color: "#f53e2d"}}>Shopee</span></Typography>
@@ -314,7 +297,6 @@ const ProductInfo = ({product, darkMode}) => {
         )
     }
 
-
     return (
         <>
             <Container>
@@ -335,10 +317,7 @@ const ProductInfo = ({product, darkMode}) => {
                                                 gutterBottom>{product.name}
                                     </Typography>
                                     <Typography variant={"h5"}
-                                                style={{
-                                                    float: "right",
-                                                    paddingRight: "10px"
-                                                }}>{product.price.formatted_with_symbol}</Typography>
+                                                style={{float: "right", paddingRight: "10px"}}>{product.price.formatted_with_symbol}</Typography>
                                     <br/>
                                     <br/>
                                     <br/>
