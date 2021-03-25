@@ -24,9 +24,8 @@ const Product = ({product,darkMode}) => {
         setOpen(!open);
     };
     const Qrcode = () => {
-
         if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            return (<></>)
+            return <></>
         } else {
             return (
                 <>
@@ -41,7 +40,6 @@ const Product = ({product,darkMode}) => {
     }
 
     const classes = useStyles();
-    console.log("product", product.permalink);
     return (
         <div key={product.name}>
             <Card variant={"outlined"} className={classes.root}>

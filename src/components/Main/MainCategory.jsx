@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const MainCategory = () => {
+const MainCategory = ({categories}) => {
     const classes = useStyles()
     return (
         <>

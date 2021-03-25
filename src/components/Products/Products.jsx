@@ -20,8 +20,8 @@ const Products = ({products, darkMode}) => {
         setDone(true)
         window.scrollTo(0,0)
     },[products])
-    return (
 
+    return (
         <main className={classes.content}>
             <>
                 <main className={classes.content}>
@@ -33,18 +33,12 @@ const Products = ({products, darkMode}) => {
                         {!done?(
                             <div style={{marginTop:"5%"}}>
                                 <CircularProgress color={"secondary"}/>
-                            </div>
-                        ):(
-                            <>
-                                {products.map((product) => (
+                            </div>):(<>{products.map((product) => (
                                     <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-                                        <Product duct product={product} darkMode={darkMode} categories/>
+                                        <Product product={product} darkMode={darkMode} categories/>
                                     </Grid>
                                 ))}
-                            </>
-
-                        )}
-
+                            </>)}
                     </Grid>
                 </main>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -65,7 +59,6 @@ const Products = ({products, darkMode}) => {
                     </Grid>
                 </Grid>
             </Grid>*/}
-
         </main>
     )
 }

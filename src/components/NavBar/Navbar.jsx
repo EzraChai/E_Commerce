@@ -22,13 +22,12 @@ import useStyles from './styles';
 function Navbar({handleChange, state, darkMode}) {
     const classes = useStyles();
     const location = useLocation();
-    const [path,setPath] = useState([]);
+    const [path, setPath] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         let pathArray = window.location.hash.split('/');
         setPath(pathArray)
-        // console.log("PAth",pathArray[1])
-    },[window.location.hash])
+    }, [window.location.hash])
 
     const IOSSwitch = withStyles((theme) => ({
         root: {
@@ -84,21 +83,16 @@ function Navbar({handleChange, state, darkMode}) {
     });
 
     const DarkModeToggle = () => {
-        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // some code..
-            return (
-                <FormControlLabel id={"DarkModeButton"} style={{marginBottom: "1px", marginLeft: "2px"}}
-                                  control={<IOSSwitch checked={state.checkedB}
-                                                      onChange={handleChange} name="checkedB"/>}
-                                  labelPlacement="end"
-                                  label={!darkMode ? <Brightness2RoundedIcon
-                                      style={{marginTop: "4px", color: "#fcba03"}}
-                                  /> : <WbSunnyIcon style={{marginTop: "6px", color: "#fc7b03"}}/>
-                                  }
-                />
-            )
-        } else {
-            return(
+        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return (
+            <FormControlLabel id={"DarkModeButton"} style={{marginBottom: "1px", marginLeft: "2px"}}
+                              control={<IOSSwitch checked={state.checkedB}
+                                                  onChange={handleChange} name="checkedB"/>}
+                              labelPlacement="end"
+                              label={!darkMode ? <Brightness2RoundedIcon
+                                  style={{marginTop: "4px", color: "#fcba03"}}
+                              /> : <WbSunnyIcon style={{marginTop: "6px", color: "#fc7b03"}}/>
+                              }/>)
+        return (
             <Tooltip title={darkMode ? "Enable Light Mode" : "Enable Dark Mode"}
                      aria-label={darkMode ? "enable-light-mode" : "enable-dark-mode"}>
                 <FormControlLabel id={"DarkModeButton"} style={{marginBottom: "1px", marginLeft: "2px"}}
@@ -110,29 +104,19 @@ function Navbar({handleChange, state, darkMode}) {
                                   /> : <WbSunnyIcon style={{marginTop: "6px", color: "#fc7b03"}}/>
                                   }/>
             </Tooltip>)
-        }
     }
 
     const Facebook = () => {
-        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // some code..
-            return (
-                <></>
-            )
-        } else {
-            return (
-                <IconButton onClick={() => window.open('https://www.facebook.com/NagaworldINT', '_blank')}>
-                    <FacebookIcon/>
-                </IconButton>
-            )
-        }
+        if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return <></>
+        return (<IconButton onClick={() => window.open('https://www.facebook.com/NagaworldINT', '_blank')}>
+                <FacebookIcon/>
+            </IconButton>)
     }
-
-    return (
-        <div>
+    return (<div>
             <AppBar position={"fixed"} className={classes.appBar} color={"inherit"}>
                 <Toolbar>
-                    <Typography component={Link} to={"/"} variant={"h6"} onClick={()=>scroll.scrollToTop()} className={classes.title} color={"inherit"}>
+                    <Typography component={Link} to={"/"} variant={"h6"} onClick={() => scroll.scrollToTop()}
+                                className={classes.title} color={"inherit"}>
                         <Avatar src={"https://i.ibb.co/2WLm1My/53078607-2630694290291910-8889152933308923904-o.png"}
                                 alt={"Brand Logo"} height="25px" className={classes.image}/>
                         TY Studio · Concept Tee
@@ -163,9 +147,7 @@ function Navbar({handleChange, state, darkMode}) {
                                     </IconButton>
                                 </Grid>*/}
                             </Grid>
-                        </div>) : (null)}
-
-
+                        </div>) : <></>}
                 </Toolbar>
             </AppBar>
 
@@ -174,23 +156,18 @@ function Navbar({handleChange, state, darkMode}) {
                  className={classes.goBackButton}
                  onClick={() => window.history.back()}>
                 <KeyboardBackspaceIcon/>
-            </Fab>
-            }
-            {path[1] === "category" &&
-            <Fab size="medium"
-                 className={classes.goBackButton}
-                 onClick={() => window.location.replace("/")}>
+            </Fab>}
+            {path[1] === "category" && <Fab size="medium"
+                                            className={classes.goBackButton}
+                                            onClick={() => window.location.replace("/")}>
                 <KeyboardBackspaceIcon/>
-            </Fab>
-            }
-            {path[1] === "product" &&
-            <Fab size="medium"
-                 className={classes.goBackButton}
-                 style={{marginTop:"0"}}
-                 onClick={() => window.history.back()}>
+            </Fab>}
+            {path[1] === "product" && <Fab size="medium"
+                                           className={classes.goBackButton}
+                                           style={{marginTop: "0"}}
+                                           onClick={() => window.history.back()}>
                 <KeyboardBackspaceIcon/>
-            </Fab>
-            }
+            </Fab>}
         </div>
     );
 }

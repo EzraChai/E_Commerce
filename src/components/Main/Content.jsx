@@ -15,7 +15,7 @@ import MainCategory from "./MainCategory";
 
 
 
-const MainContent = ({latestProduct,darkMode}) => {
+const MainContent = ({latestProduct,darkMode,categories}) => {
 
     const useStyles = makeStyles((theme) => ({
         root:{
@@ -81,7 +81,7 @@ const MainContent = ({latestProduct,darkMode}) => {
                     <div className={classes.space}/>
                     <div className={classes.space}/>
                     <div className={classes.space}/>
-                    <MainCategory/>
+                    <MainCategory categories={categories}/>
                 </Paper>
                     <NewestProduct darkMode={darkMode} latestProduct={latestProduct}/>
 

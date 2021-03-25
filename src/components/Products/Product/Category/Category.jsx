@@ -17,17 +17,14 @@ const Category = ({categories,darkMode,indexValue}) => {
         <>
             <main className={classes.content}>
                 <Typography className={classes.title} variant={"h3"}>Category</Typography>
-
                 <div className={classes.toolbar}/>
                 <div className={classes.space}>
                     <Tab categories={categories} indexValue={indexValue} darkMode={darkMode}/>
                 </div>
-
             </main>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
         </>
     );
 };

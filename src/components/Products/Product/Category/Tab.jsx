@@ -10,6 +10,7 @@ import {commerce} from "../../../../lib/commerce";
 import {CircularProgress, Grid} from "@material-ui/core";
 import {Link} from "react-router-dom"
 import Product from "../Product";
+import * as path from "path";
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -68,15 +69,11 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
     console.log(categories)
 
     useEffect(() => {
-        /*fetchProduct();*/
-    }, [])
-
-    useEffect(() => {
-        setDone(false)
         fetchProducts()
-    }, [categories,value])
+        return(lastFuc())
+    }, [value])
 
-    const fetchProducts = async () => {
+    /*const fetchProducts = async () => {
         if (categories[value]) {
         console.info("Current Index " , categories[value].slug)
             let categorySlug = [categories[value].slug]
@@ -84,8 +81,27 @@ const ScrollableTabsButtonAuto = ({categories,darkMode,indexValue})=>{
             setDone(true)
             setProducts(data);
         }
-        // console.log("Categories And Index",linkCategoryWithIndex)
+    }*/
+
+    const lastFuc = () =>{
+        setDone(false)
+        // localStorage.setItem("OldProduct",JSON.stringify(products))
     }
+
+    const fetchProducts = async()=>{
+        // let oldProducts = JSON.parse(localStorage.getItem("OldProduct"))
+        // console.log(oldProducts)
+        // if (oldProducts) {
+        //     console.log("Old Products", oldProducts)
+        // }
+        let pathArray = window.location.hash.split('/');
+        let path = pathArray[2]
+        let categorySlug = [categories[path - 1].slug]
+        const {data} = await commerce.products.list({category_slug: categorySlug});
+        setDone(true)
+        setProducts(data)
+    }
+
     // const fetchProduct = async () => {
     //     const {data} = await commerce.products.list({category_slug: categorySlug});
     //     console.log("data", data)
